@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.landing-page {
+  background-color: #D8B4FE;
+  justify-content: center;
+  align-content: end;
+}
+
+.navigation {
+  align-items: flex-start;
+  padding-top: 0%;
+  padding-bottom: 2%;
+}
+
+nav{
+  display: flex;
+  justify-content: space-evenly;
+}
