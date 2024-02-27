@@ -6,7 +6,7 @@ export function MainLayout() {
     <>
       <div className="navigation">
         <nav>
-          <button>swag</button>
+          <button onClick={() => navigate("/")}>Main Page</button>
           <button onClick={() => navigate("/reservations")}>
             Reservations
           </button>
