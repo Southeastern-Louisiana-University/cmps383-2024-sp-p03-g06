@@ -8,26 +8,32 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="landing-page" >
+      <header>
+        <h1>Welcome to Hotel Management Software</h1>
+        <p>Streamline your hotel operations with our powerful management solution.</p>
+      </header>
+      <main>
+        <section className="features">
+          <h2>Key Features</h2>
+          <ul>
+            <li>Reservation Management</li>
+            <li>Room Assignment</li>
+            <li>Guest Check-in/Check-out</li>
+            <li>Billing and Invoicing</li>
+            {/* Add more features as needed */}
+          </ul>
+        </section>
+        <section className="cta">
+          <h2>Get Started Today</h2>
+          <p>Sign up now and experience the efficiency of our hotel management software.</p>
+          <button>Sign Up</button>
+        </section>
+      </main>
+      <footer>
+        <p>&copy; 2024 Enstay. All rights reserved.</p>
+      </footer>
+    </div>
     </>
   )
 }
