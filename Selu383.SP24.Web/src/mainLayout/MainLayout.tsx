@@ -1,12 +1,15 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export function MainLayout() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="navigation">
         <nav>
           <button>swag</button>
-          <Link to="/reservations">Cick here to go to reservations</Link>
+          <button onClick={() => navigate("/reservations")}>
+            Reservations
+          </button>
         </nav>
       </div>
       <hr></hr>
