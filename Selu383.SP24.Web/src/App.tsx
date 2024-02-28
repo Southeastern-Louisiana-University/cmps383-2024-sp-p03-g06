@@ -14,13 +14,12 @@ function App() {
         <main>
           <section className="features">
             <h2>Key Features</h2>
-            <ul>
-              <li>Reservation Management</li>
-              <li>Room Assignment</li>
-              <li>Guest Check-in/Check-out</li>
-              <li>Billing and Invoicing</li>
-              {/* Add more features as needed */}
-            </ul>
+
+            <p>Reservation Management</p>
+            <p>Room Assignment</p>
+            <p>Guest Check-in/Check-out</p>
+            <p>Billing and Invoicing</p>
+            {/* Add more features as needed */}
           </section>
           <section className="cta">
             <h2>Get Started Today</h2>
