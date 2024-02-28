@@ -1,7 +1,8 @@
-import { useState } from 'react';
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,6 +26,8 @@ function App() {
           <h2>Get Started Today</h2>
           <p>Sign up now and experience the efficiency of our hotel management software.</p>
           <button>Sign Up</button>
+          {" "}
+          <button onClick={() => navigate("/login")}>LogIn</button>
         </section>
       </main>
       <footer>

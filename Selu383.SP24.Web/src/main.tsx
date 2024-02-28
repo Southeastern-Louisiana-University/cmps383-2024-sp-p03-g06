@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from './App';
-import Reservations from './routes/routes';
+import Reservations, { LogIn } from './routes/routes';
 import { MainLayout } from './mainLayout/MainLayout';
 
 
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/reservations",
         element: <Reservations/>
+      },
+      {
+        path: "/login",
+        element: <LogIn/>
       },
     ]
   },
