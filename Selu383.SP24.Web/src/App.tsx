@@ -8,15 +8,12 @@ function App() {
     <>
       <div className="landing-page">
         <header>
-          <h1>Welcome to Hotel Management Software</h1>
-          <p>
-            Streamline your hotel operations with our powerful management
-            solution.
-          </p>
+          <h1>Welcome to Enstay</h1>
+          
         </header>
         <main>
           <section className="features">
-            <h2>Key Features</h2>
+            <h2>Key Features (Coming Soon!)</h2>
 <ul>
             <p>Reservation Management</p>
             <p>Room Assignment</p>
@@ -28,11 +25,11 @@ function App() {
         </main>
         <main>
         <section className="cta">
-          <h2>Get Started Today</h2>
-          <p>Sign up now and experience the efficiency of our hotel management software.</p>
+          <h2>Get Started on Your Dream Stay Today</h2>
+          <p>Sign up now</p>
           <button>Sign Up</button>
           {" "}
-          <button onClick={() => navigate("/login")}>LogIn</button>
+          <button onClick={() => navigate("/login")}>Login</button>
         </section>
       </main>
       <footer>
