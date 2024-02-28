@@ -17,7 +17,7 @@ function App() {
         <main>
           <section className="features">
             <h2>Key Features</h2>
-
+<ul>
             <p>Reservation Management</p>
             <p>Room Assignment</p>
             <p>Guest Check-in/Check-out</p>
@@ -25,6 +25,8 @@ function App() {
             {/* Add more features as needed */}
           </ul>
         </section>
+        </main>
+        <main>
         <section className="cta">
           <h2>Get Started Today</h2>
           <p>Sign up now and experience the efficiency of our hotel management software.</p>
