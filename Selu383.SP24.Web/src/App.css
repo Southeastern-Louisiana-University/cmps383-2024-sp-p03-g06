@@ -42,7 +42,7 @@
 }
 
 .landing-page {
-  background-color: #D8B4FE;
+  background-color: #242424;
   justify-content: center;
   align-content: end;
 }
@@ -53,7 +53,7 @@
   padding-bottom: 2%;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-evenly;
 }

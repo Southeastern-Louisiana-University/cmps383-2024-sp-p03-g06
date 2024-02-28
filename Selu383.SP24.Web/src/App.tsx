@@ -7,18 +7,21 @@ function App() {
   return (
     <>
       <div className="landing-page">
-      <header>
-        <h1>Welcome to Hotel Management Software</h1>
-        <p>Streamline your hotel operations with our powerful management solution.</p>
-      </header>
-      <main>
-        <section className="features">
-          <h2>Key Features</h2>
-          <ul>
-            <li>Reservation Management</li>
-            <li>Room Assignment</li>
-            <li>Guest Check-in/Check-out</li>
-            <li>Billing and Invoicing</li>
+        <header>
+          <h1>Welcome to Hotel Management Software</h1>
+          <p>
+            Streamline your hotel operations with our powerful management
+            solution.
+          </p>
+        </header>
+        <main>
+          <section className="features">
+            <h2>Key Features</h2>
+
+            <p>Reservation Management</p>
+            <p>Room Assignment</p>
+            <p>Guest Check-in/Check-out</p>
+            <p>Billing and Invoicing</p>
             {/* Add more features as needed */}
           </ul>
         </section>
@@ -35,7 +38,7 @@ function App() {
       </footer>
     </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
