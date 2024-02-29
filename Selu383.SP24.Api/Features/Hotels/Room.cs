@@ -3,8 +3,10 @@
     public class Room
     {
         public int Id { get; set; }
-        public int Number { get; set; }
+        public int RoomNumber { get; set; }
 
         public bool Availability { get; set; }
+        public int Price { get; set; }
+
     }
 }
