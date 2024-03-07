@@ -1,13 +1,9 @@
-import React from 'react';
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from './routes/App/App';
-import Reservations from './routes/routes';
-import { LogIn } from "./routes/LogIn";
-import MainLayout from './features/shared/mainLayout/MainLayout';
-
-
-
-
+import App from "./routes/HomePage/HomePage";
+import Reservations from "./routes/Reservations/reservations";
+import { LogIn } from "./routes/Login/LogIn";
+import MainLayout from "./features/shared/mainLayout/MainLayout";
 
 export const router = createBrowserRouter([
   {
@@ -16,17 +12,17 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />
+        element: <App />,
       },
       {
         path: "/reservations",
-        element: <Reservations />
+        element: <Reservations />,
       },
     ],
   },
 
   {
     path: "/login",
-    element: <LogIn />
+    element: <LogIn />,
   },
 ]);
