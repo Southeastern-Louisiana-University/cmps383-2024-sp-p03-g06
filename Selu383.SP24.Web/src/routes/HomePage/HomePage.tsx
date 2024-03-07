@@ -1,4 +1,4 @@
-import './App.css';
+import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled, useMediaQuery } from "@mui/material";
 import { Paper, Text, Title, useMantineTheme, rem, Container } from '@mantine/core';
@@ -208,7 +208,10 @@ function App() {
           defaultMonth={pastMonth}
           selected={range}
           footer={footer}
-          onSelect={setRange}
+          onSelect={(a)=>{
+            console.log(a);
+            setRange(a)
+          }}
         />
         </Box>
       </Modal>
