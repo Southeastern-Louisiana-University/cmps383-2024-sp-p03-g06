@@ -78,15 +78,26 @@ public static class SeedHelper
             return;
         }
 
-        for (int i = 0; i < 4; i++)
-        {
-            dataContext.Set<Hotel>()
-                .Add(new Hotel
-                {
-                    Name = "Hammond " + i,
-                    Address = "1234 Place st"
-                });
-        }
+        dataContext.Set<Hotel>()
+            .Add(new Hotel
+            {
+                Name = "The Sleepy Pillow",
+                Address = "7485 Melatonin Rd."
+            });
+
+        dataContext.Set<Hotel>()
+            .Add(new Hotel
+            {
+                Name = "Comfy Inn",
+                Address = "1946 North Morrison"
+            });
+
+        dataContext.Set<Hotel>()
+            .Add(new Hotel
+            {
+                Name = "Good Sleep Motel",
+                Address = "7584 South Oak"
+            });
 
         await dataContext.SaveChangesAsync();
     }
