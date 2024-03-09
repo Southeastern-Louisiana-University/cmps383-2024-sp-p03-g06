@@ -40,7 +40,7 @@ export default function FindHotel() {
       <ul>
         {hotels?.map((hotel) => (
           <li key={hotel.id}>
-            <Link to={`/hotel-details/${hotel.id}`}>{hotel.name}</Link>
+            <Link to={`/HotelDetails/${hotel.id}`}>{hotel.name}</Link>
           </li>
         ))}
       </ul>
