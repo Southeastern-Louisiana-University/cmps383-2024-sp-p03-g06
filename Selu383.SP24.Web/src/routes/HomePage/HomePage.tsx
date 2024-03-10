@@ -8,7 +8,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
-import { Carousel } from '@mantine/carousel';
+import Carousel from 'react-material-ui-carousel'
+
 
 
 
@@ -41,34 +42,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pastMonth = new Date(2024, 1, 1);
 
-interface CardProps {
-  image: string;
-  title: string;
-  category: string;
-}
+function Item(props: any)
+{
+    return (
+        <Paper>
+            <img 
+              className='carousel-image'
+              src={props.item.image}
+            />
+            <h2>{props.item.name}</h2>
+            <p>{props.item.description}</p>
 
-function Card({ image, title, category }: CardProps) {
-  return (
-    <Paper
-      shadow="md"
-      p="xl"
-      radius="md"
-      style={{ backgroundImage: `url(${image})` }}
-      className={"card"}
-    >
-      <div>
-        <Text className={"category"} size="xs">
-          {category}
-        </Text>
-        <Title order={3} className={"title"}>
-          {title}
-        </Title>
-      </div>
-      <Button >
-        Read article
-      </Button>
-    </Paper>
-  );
+            <Button className="CheckButton">
+                Check it out!
+            </Button>
+        </Paper>
+    )
 }
 
 const data = [
@@ -184,37 +173,29 @@ function App() {
     }
   }
 
-  const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = data.map((item) => (
-    <Carousel.Slide key={item.title}>
-      <Card {...item} />
-    </Carousel.Slide>
-  ));
-
   return (
     <>
-    <ThemeProvider theme={darkTheme}>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <DayPicker
-          id="test"
-          mode="range"
-          defaultMonth={pastMonth}
-          selected={range}
-          footer={footer}
-          onSelect={(a)=>{
-            console.log(a);
-            setRange(a)
-          }}
-        />
-        </Box>
-      </Modal>
+      <ThemeProvider theme={darkTheme}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+          <DayPicker
+            id="test"
+            mode="range"
+            defaultMonth={pastMonth}
+            selected={range}
+            footer={footer}
+            onSelect={(a)=>{
+              console.log(a);
+              setRange(a)
+            }}
+          />
+          </Box>
+        </Modal>
         <Container>
             <AppBar position="static" className="search-bar">
               <Toolbar>
@@ -264,19 +245,12 @@ function App() {
           
           {renderMenu} 
         </Container>
-        <Container>
-          <Carousel
-            slideSize={{ base: '100%', sm: '50%' }}
-            slideGap={{ base: rem(2), sm: 'xl' }}
-            align="start"
-            slidesToScroll={mobile ? 1 : 2}
-          >
-            {slides}
+        <Container className='carousel-container'>
+          <Carousel className='carousel'>
+            {data.map((data, i) => <Item key={i} item={data}/>)}
           </Carousel>
-          </Container>
-          </ThemeProvider>
-          
-        
+        </Container>
+      </ThemeProvider> 
     </>
   );
 }
