@@ -14,7 +14,7 @@ export default function Reservations() {
       ></input>
       <Link
         onClick={(e) => (!searchTerm ? e.preventDefault() : null)}
-        to={`/HotelFinder?searchTerm=${encodeURIComponent(
+        to={`/hotel-finder?searchTerm=${encodeURIComponent(
           searchTerm
         )}&start=now`}
         aria-disabled={!searchTerm}
