@@ -235,6 +235,22 @@ function App() {
           </Box>
         </Modal>
         <Container>
+          {/* <label htmlFor="search">Find a hotel</label>
+          <input
+            id="search"
+            name="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value ?? "")}
+          ></input>
+          <Link
+            onClick={(e) => (!searchTerm ? e.preventDefault() : string)}
+            to={`/find-hotel?searchTerm=${encodeURIComponent(
+              searchTerm
+            )}&start=now`}
+            aria-disabled={!searchTerm}
+          >
+            Search
+          </Link> */}
           <AppBar position="static" className="search-bar">
             <Toolbar>
               <label htmlFor="search">Search for a hotel</label>
@@ -244,22 +260,7 @@ function App() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value ?? "")}
               ></input>
-              <label htmlFor="search">Find a hotel</label>
-              <input
-                id="search"
-                name="search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value ?? "")}
-              ></input>
-              <Link
-                onClick={(e) => (!searchTerm ? e.preventDefault() : null)}
-                to={`/find-hotel?searchTerm=${encodeURIComponent(
-                  searchTerm
-                )}&start=now`}
-                aria-disabled={!searchTerm}
-              >
-                Search
-              </Link>
+
               <Divider orientation="vertical" flexItem variant="middle" />
               <Link component={"button"} onClick={handleOpen}>
                 Choose Date(s)

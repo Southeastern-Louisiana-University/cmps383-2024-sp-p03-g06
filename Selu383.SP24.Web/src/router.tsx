@@ -4,6 +4,7 @@ import App from "./routes/HomePage/HomePage";
 import Reservations from "./routes/Reservations/reservations";
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
+import HotelDetails from "./routes/AllThingsHotel/HotelDetails";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/reservations",
         element: <Reservations />,
+      },
+      {
+        path: "HotelDetails",
+        element: <HotelDetails />,
       },
     ],
   },
