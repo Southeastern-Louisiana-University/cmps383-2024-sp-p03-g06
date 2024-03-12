@@ -1,10 +1,13 @@
-import React from "react";
+
 import { createBrowserRouter } from "react-router-dom";
 import App from "./routes/HomePage/HomePage";
 import Reservations from "./routes/Reservations/reservations";
-import { LogIn } from "./routes/Login/LogIn";
+import  Login  from "./routes/Login/Login";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Register from "./routes/Register/Register";
+
+
+
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +27,7 @@ export const router = createBrowserRouter([
 
   {
     path: "/login",
-    element: <LogIn />,
+    element: <Login />,
   },
   {
     path: "/register",

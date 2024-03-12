@@ -9,6 +9,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
 import { Carousel } from '@mantine/carousel';
+import { Routes, Route } from "react-router-dom";
+import { Home } from '@mui/icons-material';
+
+import DefaultLayout from '../../layouts/DefaultLayout';
+import ProtectedLayout from '../../layouts/ProtectedLayout';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 
 
@@ -293,5 +300,20 @@ const darkTheme = createTheme({
     }
   },
 });
+
+<>
+      <Routes>
+        <Route element={<DefaultLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+        <Route element={<ProtectedLayout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
+    </>
+  
+
+
 
 export default App;
