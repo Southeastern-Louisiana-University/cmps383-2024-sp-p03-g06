@@ -72,7 +72,7 @@ const data = [
   },
 ];
 
-function App() {
+export function App() {
 
   const [hotels, setHotels] = useState<HotelDto[]>([]);
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ function App() {
         setHotels(response.data)
       }
     }
-  }, [])
+  }, []);
 
   /* 
   useEffect(() => {
