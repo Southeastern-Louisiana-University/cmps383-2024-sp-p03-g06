@@ -11,7 +11,9 @@ import { DateRange, DayPicker } from 'react-day-picker';
 import Carousel from 'react-material-ui-carousel'
 import { useFetch } from "use-http";
 import { ok } from 'assert';
-import { HotelDto } from '../../types';
+import { HotelDto } from '../Hotel/HotelDto';
+
+
 
 
 
@@ -65,37 +67,37 @@ function Item(props: any)
 const photos = [
   {
     image:
-      'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/903417402/photo/luxury-construction-hotel-with-swimming-pool-at-sunset.jpg?s=612x612&w=0&k=20&c=NyPC_c-wE3W_CImA4t57FpyGy6f428CYROd80jxVC4A=',
     title: 'Best forests to visit in North America',
     category: 'nature',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/636484522/photo/hotel-resort-swimming-pool.jpg?s=612x612&w=0&k=20&c=ET-8reopQEIhH4YYee6tqlFpfKEg19oLRRCJX3-56rs=',
     title: 'Hawaii beaches review: better than you think',
     category: 'beach',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/528487340/photo/beach-living-on-sea-view.jpg?s=612x612&w=0&k=20&c=-txUQWbvHNG6jOAPQrduesK9foBw8hQid6f3Y2GnwYo=',
     title: 'Mountains at night: 12 best locations to enjoy the view',
     category: 'nature',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/535761281/photo/couple-relaxing-on-hotel-rooftop.jpg?s=612x612&w=0&k=20&c=zFBkqlcXu7-HF9XJ6l1Z7UqkWiIqe5z6kW9pizXnrZs=',
     title: 'Aurora in Norway: when to visit for best experience',
     category: 'nature',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/531757471/photo/lugano-in-switzerland.jpg?s=612x612&w=0&k=20&c=Siu7nWpdekR7ZHtAziW5KzedjCgUNqn16MP2FpkbvDg=',
     title: 'Best places to visit this winter',
     category: 'tourism',
   },
   {
     image:
-      'https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      'https://media.istockphoto.com/id/609688086/photo/hotel-buildings-with-yachts-and-palm-trees.jpg?s=612x612&w=0&k=20&c=tb9QQ2A4ZUVY_mMC102XXEFRDK4Xz_Ifcm5iIYihGJc=',
     title: 'Active volcanos reviews: travel at your own risk',
     category: 'nature',
   },

@@ -70,3 +70,9 @@
 .carousel-container{
   padding-top: 20px;
 }
+
+
+.rdp-day_selected{
+  background-color: #61dafbaa;
+  border-width: 1;
+}
