@@ -1,16 +1,14 @@
 import './HomePage.css';
-import { useNavigate } from 'react-router-dom';
-import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled, useMediaQuery } from "@mui/material";
-import { Paper, Text, Title, Space, Container } from '@mantine/core';
-import React, { useCallback, useEffect, useState } from "react";
+
+import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled } from "@mui/material";
+import { Paper,  Space, Container } from '@mantine/core';
+import React, { useEffect, useState } from "react";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
 import Carousel from 'react-material-ui-carousel'
-import { useFetch } from "use-http";
-import { ok } from 'assert';
 import { HotelDto } from '../Hotel/HotelDto';
 
 
@@ -106,7 +104,7 @@ const photos = [
 function App() {
 
   const [hotels, setHotels] = useState<HotelDto[]>()
-  const {get, request, response, data, loading, error } = useFetch({data: []})
+  /* const {get, request, response, data, loading, error } = useFetch({data: []})
   console.log('request', request)
   console.log('response', response)
 
@@ -124,9 +122,18 @@ function App() {
 
   useEffect(() =>{
     loadHotels()
-  }, [loadHotels])
+  }, [loadHotels]) */
 
-  const navigate = useNavigate();
+  useEffect(() =>{
+    fetch('/api/hotels', {
+      method: "get",
+    })
+      .then<HotelDto[]>((r) => r.json())
+      .then((j) => {
+        setHotels(j)
+      })
+  }, [hotels])
+
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -241,7 +248,7 @@ function App() {
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                   <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={0} color="error">
                       <MailIcon />
                     </Badge>
                   </IconButton>
@@ -250,7 +257,7 @@ function App() {
                     aria-label="show 17 new notifications"
                     color="inherit"
                   >
-                    <Badge badgeContent={17} color="error">
+                    <Badge badgeContent={0} color="error">
                       <NotificationsIcon />
                     </Badge>
                   </IconButton>
