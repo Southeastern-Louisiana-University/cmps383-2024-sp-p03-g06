@@ -76,3 +76,15 @@
   background-color: #61dafbaa;
   border-width: 1;
 }
+
+.css-1f8sh1y{
+  min-height: 470px;
+}
+
+.MuiButtonBase-root{
+  position: static;
+}
+
+.carousel-image{
+  min-height: 460px;
+}
