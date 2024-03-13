@@ -1,18 +1,46 @@
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, Table, TableBody, TableCell, TableHead, TableRow, ThemeProvider, Toolbar, createTheme, styled, useMediaQuery } from "@mui/material";
-import { Paper, Container, Loader } from '@mantine/core';
-import React, { useEffect, useState } from "react";
+import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled, useMediaQuery } from "@mui/material";
+import { Paper, Text, Title, Space, Container } from '@mantine/core';
+import React, { useCallback, useEffect, useState } from "react";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
 import Carousel from 'react-material-ui-carousel'
-import { HotelDto } from '../Hotel/HotelDto';
-import { ApiResponse } from '../../config/types';
-import api from '../../config/axios';
+import { useFetch } from "use-http";
+import { ok } from 'assert';
+import { HotelDto } from '../../types';
 
+
+
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+  },
+}));
+
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+}));
 
 const pastMonth = new Date(2024, 1, 1);
 
@@ -34,9 +62,10 @@ function Item(props: any)
     )
 }
 
-const data = [
+const photos = [
   {
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaDxYRm-4lhiNT1No9Ua999Ec5qTcxstNfDQ&usqp=CAU',
+    image:
+      'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
     title: 'Best forests to visit in North America',
     category: 'nature',
   },
@@ -72,37 +101,30 @@ const data = [
   },
 ];
 
-export function App() {
+function App() {
 
-  const [hotels, setHotels] = useState<HotelDto[]>([]);
+  const [hotels, setHotels] = useState<HotelDto[]>()
+  const {get, request, response, data, loading, error } = useFetch({data: []})
+  console.log('request', request)
+  console.log('response', response)
+
+  const loadHotels = useCallback(async() => {
+    const initialHotels = await get('/api/hotels')
+
+    console.log('(loadHotels) ok', ok)
+    console.log('(loadHotels) response.ok',response.ok)
+    console.log('(loadHotels) response.data', response.data)
+    console.log('(loadHotels) data', data)
+
+    if (response.ok) setHotels(initialHotels.data)
+    
+  }, [get, response])
+
+  useEffect(() =>{
+    loadHotels()
+  }, [loadHotels])
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    FetchHotels();
-
-    async function FetchHotels() {
-      const {data: response } = await api.get<ApiResponse<HotelDto[]>>(
-        `/api/hotels`
-      );
-
-      if (response.hasErrors) {
-        console.log("poop")
-      }
-
-      if (response.data) {
-        setHotels(response.data)
-      }
-    }
-  }, []);
-
-  /* 
-  useEffect(() => {
-    axios.get(`api/hotels`)
-      .then((res) => {
-        setHotels(res.data.hotels);
-      })
-  },[]) */
-  
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -249,33 +271,21 @@ export function App() {
         </Container>
         <Container className='carousel-container'>
           <Carousel className='carousel'>
-            {data.map((data, i) => <Item key={i} item={data}/>)}
+            {photos.map((photo, i) => <Item key={i} item={photo}/>)}
           </Carousel>
         </Container>
-        {hotels ? (
-          <Table>
-            <TableHead>
-              <tr>
-                <th>id</th>
-                <th>name</th>
-              </tr>
-            </TableHead>
-            <TableBody>
-              {hotels.map((hotel) => {
-                return(
-                  <TableRow key={hotel.id}>
-                    <TableCell>{hotel.id}</TableCell>
-                    <TableCell>{hotel.name}</TableCell>
-                  </TableRow>
-                )
-              })}
-            </TableBody>
-          </Table>
-        ) : (
-          <>
-            <p>loading</p>
-          </>
-        )}
+        <Space h="md"/>
+        <Container>
+          
+          {hotels?.map((hotel) =>{
+            return(
+              <>
+              <div>Hotels</div>
+              <p>{hotel.name}</p>
+              </>
+            )
+          } )}
+        </Container>
       </ThemeProvider> 
     </>
   );
@@ -293,31 +303,5 @@ const darkTheme = createTheme({
     }
   },
 });
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 export default App;
