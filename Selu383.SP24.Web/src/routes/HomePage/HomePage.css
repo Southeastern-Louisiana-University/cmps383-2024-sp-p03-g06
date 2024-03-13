@@ -66,3 +66,7 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.carousel-container{
+  padding-top: 20px;
+}

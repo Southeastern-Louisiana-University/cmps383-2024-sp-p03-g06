@@ -6,14 +6,15 @@ import {
 } from "react-router-dom";
 import { MantineProvider } from '@mantine/core';
 import { router } from './router';
+import '@mantine/carousel/styles.css';
 
 
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  
     <MantineProvider>
       <RouterProvider router={router} />
     </MantineProvider>
-  </React.StrictMode>,
+  
 )

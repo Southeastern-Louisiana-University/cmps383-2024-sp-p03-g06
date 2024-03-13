@@ -1,14 +1,17 @@
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled, useMediaQuery } from "@mui/material";
-import { Paper, Text, Title, useMantineTheme, rem, Container } from '@mantine/core';
-import React, { useState } from "react";
+import { Paper, Text, Title, Space, Container } from '@mantine/core';
+import React, { useCallback, useEffect, useState } from "react";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
-import { Carousel } from '@mantine/carousel';
+import Carousel from 'react-material-ui-carousel'
+import { useFetch } from "use-http";
+import { ok } from 'assert';
+import { HotelDto } from '../../types';
 
 
 
@@ -41,37 +44,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pastMonth = new Date(2024, 1, 1);
 
-interface CardProps {
-  image: string;
-  title: string;
-  category: string;
+function Item(props: any)
+{
+    return (
+        <Paper>
+            <img 
+              className='carousel-image'
+              src={props.item.image}
+            />
+            <h2>{props.item.name}</h2>
+            <p>{props.item.description}</p>
+
+            <Button className="CheckButton">
+                Check it out!
+            </Button>
+        </Paper>
+    )
 }
 
-function Card({ image, title, category }: CardProps) {
-  return (
-    <Paper
-      shadow="md"
-      p="xl"
-      radius="md"
-      style={{ backgroundImage: `url(${image})` }}
-      className={"card"}
-    >
-      <div>
-        <Text className={"category"} size="xs">
-          {category}
-        </Text>
-        <Title order={3} className={"title"}>
-          {title}
-        </Title>
-      </div>
-      <Button >
-        Read article
-      </Button>
-    </Paper>
-  );
-}
-
-const data = [
+const photos = [
   {
     image:
       'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
@@ -111,6 +102,28 @@ const data = [
 ];
 
 function App() {
+
+  const [hotels, setHotels] = useState<HotelDto[]>()
+  const {get, request, response, data, loading, error } = useFetch({data: []})
+  console.log('request', request)
+  console.log('response', response)
+
+  const loadHotels = useCallback(async() => {
+    const initialHotels = await get('/api/hotels')
+
+    console.log('(loadHotels) ok', ok)
+    console.log('(loadHotels) response.ok',response.ok)
+    console.log('(loadHotels) response.data', response.data)
+    console.log('(loadHotels) data', data)
+
+    if (response.ok) setHotels(initialHotels.data)
+    
+  }, [get, response])
+
+  useEffect(() =>{
+    loadHotels()
+  }, [loadHotels])
+
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -184,37 +197,29 @@ function App() {
     }
   }
 
-  const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = data.map((item) => (
-    <Carousel.Slide key={item.title}>
-      <Card {...item} />
-    </Carousel.Slide>
-  ));
-
   return (
     <>
-    <ThemeProvider theme={darkTheme}>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <DayPicker
-          id="test"
-          mode="range"
-          defaultMonth={pastMonth}
-          selected={range}
-          footer={footer}
-          onSelect={(a)=>{
-            console.log(a);
-            setRange(a)
-          }}
-        />
-        </Box>
-      </Modal>
+      <ThemeProvider theme={darkTheme}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+          <DayPicker
+            id="test"
+            mode="range"
+            defaultMonth={pastMonth}
+            selected={range}
+            footer={footer}
+            onSelect={(a)=>{
+              console.log(a);
+              setRange(a)
+            }}
+          />
+          </Box>
+        </Modal>
         <Container>
             <AppBar position="static" className="search-bar">
               <Toolbar>
@@ -264,19 +269,24 @@ function App() {
           
           {renderMenu} 
         </Container>
-        <Container>
-          <Carousel
-            slideSize={{ base: '100%', sm: '50%' }}
-            slideGap={{ base: rem(2), sm: 'xl' }}
-            align="start"
-            slidesToScroll={mobile ? 1 : 2}
-          >
-            {slides}
+        <Container className='carousel-container'>
+          <Carousel className='carousel'>
+            {photos.map((photo, i) => <Item key={i} item={photo}/>)}
           </Carousel>
-          </Container>
-          </ThemeProvider>
+        </Container>
+        <Space h="md"/>
+        <Container>
           
-        
+          {hotels?.map((hotel) =>{
+            return(
+              <>
+              <div>Hotels</div>
+              <p>{hotel.name}</p>
+              </>
+            )
+          } )}
+        </Container>
+      </ThemeProvider> 
     </>
   );
 }
