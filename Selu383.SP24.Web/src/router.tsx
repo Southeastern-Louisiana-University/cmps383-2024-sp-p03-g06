@@ -1,11 +1,13 @@
-import React from "react";
+
 import { createBrowserRouter } from "react-router-dom";
 import App from "./routes/HomePage/HomePage";
-import Reservations from "./routes/Reservations/reservations";
+
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
+import Reservations from "./routes/Reservations/reservations";
 
-export const router = createBrowserRouter([
+
+ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -26,3 +28,4 @@ export const router = createBrowserRouter([
     element: <LogIn />,
   },
 ]);
+export default router

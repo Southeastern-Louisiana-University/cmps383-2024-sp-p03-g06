@@ -1,10 +1,7 @@
 import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
-
 import MenuIcon from '@mui/icons-material/Menu';
-
-
 
 
 
@@ -35,7 +32,7 @@ export default function MainLayout() {
                 variant="h4" 
                 component="div" 
                 sx={{ flexGrow: 1 }}
-                className="enstay-title"
+                
               >
                 EnStay
               </Typography>
