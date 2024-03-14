@@ -179,14 +179,14 @@ function App() {
                         placeholder="Select Destination…"
                         inputProps={{ 'aria-label': 'search' }} />
                     </Search>
-                    <Divider orientation="vertical" flexItem  variant="middle"/>
-                    <Link
+                    {/* <Divider orientation="vertical" flexItem  variant="middle"/> */}
+                    {/* <Link
                       component={"button"}
                       onClick={handleOpen}
                       
                     >
                       Choose Date(s)
-                    </Link>
+                    </Link> */}
                   
                     
                   </Toolbar>

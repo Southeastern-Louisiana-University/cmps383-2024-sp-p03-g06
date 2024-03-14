@@ -109,9 +109,9 @@ div.listing-title{
     display: -ms-flexbox;
     display: flex;
     justify-content: center;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     width: 100%;
     height: 100px;
     box-sizing: border-box;
@@ -123,6 +123,3 @@ div.listing-title{
     color: rgba(0, 0, 0, 0.87);
 }
 
-m-46b77525.mantine-InputWrapper-root.mantine-DatePickerInput-root{
-  padding-left: 10px;
-}
