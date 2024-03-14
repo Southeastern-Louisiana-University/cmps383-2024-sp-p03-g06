@@ -1,14 +1,13 @@
 import './HomePage.css';
 
-import { AppBar, Badge, Box, Button, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled } from "@mui/material";
-import { Paper,  Space, Container } from '@mantine/core';
+import { AppBar, Badge, Box, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled } from "@mui/material";
+import { Space, Container } from '@mantine/core';
 import React, { useEffect, useState } from "react";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
-import Carousel from 'react-material-ui-carousel'
 import { HotelDto } from '../Hotel/HotelDto';
 
 
@@ -44,62 +43,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pastMonth = new Date(2024, 1, 1);
 
-function Item(props: any)
-{
-    return (
-        <Paper>
-            <img 
-              className='carousel-image'
-              src={props.item.image}
-            />
-            <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p>
 
-            <Button className="CheckButton">
-                Check it out!
-            </Button>
-        </Paper>
-    )
-}
 
-const photos = [
-  {
-    image:
-      'https://media.istockphoto.com/id/903417402/photo/luxury-construction-hotel-with-swimming-pool-at-sunset.jpg?s=612x612&w=0&k=20&c=NyPC_c-wE3W_CImA4t57FpyGy6f428CYROd80jxVC4A=',
-    title: 'Best forests to visit in North America',
-    category: 'nature',
-  },
-  {
-    image:
-      'https://media.istockphoto.com/id/636484522/photo/hotel-resort-swimming-pool.jpg?s=612x612&w=0&k=20&c=ET-8reopQEIhH4YYee6tqlFpfKEg19oLRRCJX3-56rs=',
-    title: 'Hawaii beaches review: better than you think',
-    category: 'beach',
-  },
-  {
-    image:
-      'https://media.istockphoto.com/id/528487340/photo/beach-living-on-sea-view.jpg?s=612x612&w=0&k=20&c=-txUQWbvHNG6jOAPQrduesK9foBw8hQid6f3Y2GnwYo=',
-    title: 'Mountains at night: 12 best locations to enjoy the view',
-    category: 'nature',
-  },
-  {
-    image:
-      'https://media.istockphoto.com/id/535761281/photo/couple-relaxing-on-hotel-rooftop.jpg?s=612x612&w=0&k=20&c=zFBkqlcXu7-HF9XJ6l1Z7UqkWiIqe5z6kW9pizXnrZs=',
-    title: 'Aurora in Norway: when to visit for best experience',
-    category: 'nature',
-  },
-  {
-    image:
-      'https://media.istockphoto.com/id/531757471/photo/lugano-in-switzerland.jpg?s=612x612&w=0&k=20&c=Siu7nWpdekR7ZHtAziW5KzedjCgUNqn16MP2FpkbvDg=',
-    title: 'Best places to visit this winter',
-    category: 'tourism',
-  },
-  {
-    image:
-      'https://media.istockphoto.com/id/609688086/photo/hotel-buildings-with-yachts-and-palm-trees.jpg?s=612x612&w=0&k=20&c=tb9QQ2A4ZUVY_mMC102XXEFRDK4Xz_Ifcm5iIYihGJc=',
-    title: 'Active volcanos reviews: travel at your own risk',
-    category: 'nature',
-  },
-];
+
 
 function App() {
 
@@ -171,7 +117,7 @@ function App() {
   );
 
   const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute' ,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -277,11 +223,6 @@ function App() {
             </AppBar>
           
           {renderMenu} 
-        </Container>
-        <Container className='carousel-container'>
-          <Carousel className='carousel'>
-            {photos.map((photo, i) => <Item key={i} item={photo}/>)}
-          </Carousel>
         </Container>
         <Space h="md"/>
         <Container>

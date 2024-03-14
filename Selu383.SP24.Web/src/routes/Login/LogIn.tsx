@@ -1,80 +1,77 @@
-import {
-  Container,
-  CssBaseline,
-  Box,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
-  Grid
-} from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+interface UserDto {
+  username?: string;
+  id?: number;
+}
 
 export function LogIn() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState<UserDto | null>(null);
+  const navigate = useNavigate(); // Hook for navigation
 
-  const handleLogin = () => { };
+  useEffect(() => {
+    fetch("/api/authentication/me")
+      .then(async (response) => {
+        if (response.ok) {
+          const userResp = await response.json();
+          setUser(userResp);
+        }
+      });
+  }, []);
+
+  function handleUserNameChange(e: ChangeEvent<HTMLInputElement>) {
+    setUsername(e.target.value);
+  }
+
+  function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
+    setPassword(e.target.value);
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const response = await fetch("/api/authentication/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+
+    if (response.ok) {
+      const userResp = await response.json();
+      setUser(userResp);
+      navigate("/"); // Redirect user to the home page
+    } else {
+      // Handle error - show error message or take appropriate action
+    }
+  }
 
   return (
     <>
-
-      <Container maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            mt: 5,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "primary.dark" }}>
-          </Avatar>
-          <Typography variant="h3">Login</Typography>
-          <Box sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }} />
-
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleLogin}
-            >
-              Submit
-            </Button>
-            <Grid container justifyContent={"flex-end"}>
-              <Grid item>
-                <Link to="/register">Don't have an account? Sign Up</Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" id="username" value={username} onChange={handleUserNameChange} />
+          <label htmlFor="password">Password</label>
+          <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange} />
+          <button type="submit">Log In</button>
+        </form>
+      </div>
+      {user && (
+        <div>
+          <p>Welcome, {user.username}!</p>
+          {/* Additional user-related UI can go here */}
+        </div>
+      )}
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </>
   );
 }
