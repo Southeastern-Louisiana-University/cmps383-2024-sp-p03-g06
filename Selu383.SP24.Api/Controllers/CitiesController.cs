@@ -14,7 +14,10 @@ public class CitiesController : ControllerBase
     private readonly DbSet<City> cities;
     private readonly DataContext dataContext;
 
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable IDE0290 // Use primary constructor
     public CitiesController(DataContext dataContext)
+#pragma warning restore IDE0079 // Remove unnecessary suppression
     {
         this.dataContext = dataContext;
         cities = dataContext.Set<City>();

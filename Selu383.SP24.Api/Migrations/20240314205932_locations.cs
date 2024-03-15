@@ -2,7 +2,6 @@
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace Selu383.SP24.Api.Migrations
 {
@@ -25,6 +24,7 @@ namespace Selu383.SP24.Api.Migrations
                     table.PrimaryKey("PK_City", x => x.Id);
                 });
 
+#pragma warning disable CA1861 // Avoid constant arrays as arguments
             migrationBuilder.InsertData(
                 table: "City",
                 columns: new[] { "Id", "Location" },
@@ -33,6 +33,7 @@ namespace Selu383.SP24.Api.Migrations
                     { 1, "Baton Rouge" },
                     { 2, "New Orleans" }
                 });
+#pragma warning restore CA1861 // Avoid constant arrays as arguments
         }
 
         /// <inheritdoc />
