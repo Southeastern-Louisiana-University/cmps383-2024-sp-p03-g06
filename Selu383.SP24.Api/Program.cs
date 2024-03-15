@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Selu383.SP24.Api.Data;
 using Selu383.SP24.Api.Features.Authorization;
-using Selu383.SP24.Api.Features.Hotels;
 
 var builder = WebApplication.CreateBuilder(args);
 
