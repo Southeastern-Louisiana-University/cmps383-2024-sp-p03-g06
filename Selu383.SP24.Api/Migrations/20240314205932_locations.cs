@@ -7,7 +7,7 @@
 namespace Selu383.SP24.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class locations : Migration
+    public partial class Locations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

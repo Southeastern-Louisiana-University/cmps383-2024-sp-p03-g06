@@ -13,7 +13,7 @@ namespace Selu383.SP24.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20240314205932_locations")]
-    partial class locations
+    partial class Locations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
