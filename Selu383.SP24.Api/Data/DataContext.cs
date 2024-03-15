@@ -19,8 +19,8 @@ public class DataContext : IdentityDbContext<User, Role, int, IdentityUserClaim<
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<City>().HasData(new City { Id = 1, Location = "Baton Rouge" });
-        modelBuilder.Entity<City>().HasData(new City { Id = 2, Location = "New Orleans" });
+        modelBuilder.Entity<City>().HasData(new City { Location = "Baton Rouge" });
+        modelBuilder.Entity<City>().HasData(new City { Location = "New Orleans" });
 
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
