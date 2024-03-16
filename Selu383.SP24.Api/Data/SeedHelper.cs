@@ -17,6 +17,7 @@ public static class SeedHelper
         await AddUsers(serviceProvider);
 
         await AddHotels(dataContext);
+        await AddCities(dataContext);
     }
 
     private static async Task AddUsers(IServiceProvider serviceProvider)
@@ -90,6 +91,32 @@ public static class SeedHelper
 
         await dataContext.SaveChangesAsync();
     }
+
+    private static async Task AddCities(DataContext dataContext)
+    {
+
+        var cities = dataContext.Set<City>();
+
+        if (await cities.AnyAsync())
+        {
+            return;
+        }
+
+        dataContext.Set<City>().Add(new City
+        {
+            Location = "Baton Rouge"
+        });
+
+        dataContext.Set<City>().Add(new City
+        {
+            Location = "New Orleans"
+        });
+
+        await dataContext.SaveChangesAsync();
+
+
+    }
+
 
 }
 
