@@ -15,9 +15,9 @@ public static class SeedHelper
 
         await AddRoles(serviceProvider);
         await AddUsers(serviceProvider);
-
-        await AddHotels(dataContext);
         await AddCities(dataContext);
+        await AddHotels(dataContext);
+        
     }
 
     private static async Task AddUsers(IServiceProvider serviceProvider)
@@ -79,13 +79,16 @@ public static class SeedHelper
             return;
         }
 
+        var cities = await dataContext.Set<City>().ToListAsync();
+
         for (int i = 0; i < 4; i++)
         {
             dataContext.Set<Hotel>()
                 .Add(new Hotel
                 {
                     Name = "Hammond " + i,
-                    Address = "1234 Place st"
+                    Address = "1234 Place st",
+                    CityId = cities[0].Id
                 });
         }
 
