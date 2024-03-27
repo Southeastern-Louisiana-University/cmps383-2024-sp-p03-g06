@@ -81,7 +81,8 @@ public class CitiesController : ControllerBase
             .Select(x => new CityDto
             {
                 Id = x.Id,
-                Location = x.Location
+                Location = x.Location,
+                Hotels = x.Hotels
             });
     }
 

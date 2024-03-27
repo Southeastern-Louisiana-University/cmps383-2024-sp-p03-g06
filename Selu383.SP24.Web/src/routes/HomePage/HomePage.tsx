@@ -140,9 +140,9 @@ function App() {
                 >
                   Search
                 </Link>
-                <Box sx={{ flexGrow: 1 }} />
+                {/* <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                </Box>
+                </Box> */}
               </Toolbar>
             </AppBar>
         </Container>

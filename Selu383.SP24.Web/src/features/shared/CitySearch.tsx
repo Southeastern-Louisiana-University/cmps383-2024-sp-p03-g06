@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CityDto } from "../../Dtos/CityDto";
 import { useFetch } from "use-http";
+import { Container, Space, Title } from "@mantine/core";
+import './CitySearch.css';
+import { AppBar, Toolbar } from "@mui/material";
 
 
 export default function CitySearch(){
@@ -23,6 +26,9 @@ export default function CitySearch(){
       },
       [searchTerm]
     );
+
+    const hotels = cities?.hotels
+    
   
     if (loading) {
       return <div>Loading...</div>;
@@ -36,19 +42,43 @@ export default function CitySearch(){
       );
     }
 
+    const [NewSearchTerm, setSearchTerm] = useState("");
+
     return (
+      <>
+        <Container>
+            <AppBar position="static" className="search-bar">
+              <Toolbar>
+                <label htmlFor="search">Search Destination</label>
+                <input id="search" value={NewSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
+                <Link 
+                  onClick={(e) => (!searchTerm ? e.preventDefault() : null)}
+                  to={`/find-city?searchTerm=${encodeURIComponent(NewSearchTerm)}&start=now`}
+                  aria-disabled={!searchTerm}
+                >
+                  Search
+                </Link>
+                {/* <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                </Box> */}
+              </Toolbar>
+            </AppBar>
+        </Container>
         <div>
-          <p>{searchTerm}</p>
           <ul>
             {cities?.map((city) => (
               <div key={city.id}>
-                Found these hotels in {city.location}
-                <li>
-                  {city.location}
+                <Title>
+                  Found these hotels in {city.location}
+                </Title>
+                <Space></Space>
+                <li className="hotel-listing">
+                  <link>{}</link>
                 </li>
               </div>
             ))}
           </ul>
         </div>
+        </>
       );
 }
