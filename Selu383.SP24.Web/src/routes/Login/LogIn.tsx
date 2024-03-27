@@ -1,77 +1,72 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useFetch } from "use-http";
+import { FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../features/AuthContext";
 
-interface UserDto {
-  username?: string;
-  id?: number;
-}
+export default function Login() {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("galkadi");
+  const [password, setPassword] = useState("Password123!");
+  const [error, setError] = useState("");
 
-export function LogIn() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState<UserDto | null>(null);
-  const navigate = useNavigate(); // Hook for navigation
+  const authContext = useContext(AuthContext);
 
-  useEffect(() => {
-    fetch("/api/authentication/me")
-      .then(async (response) => {
-        if (response.ok) {
-          const userResp = await response.json();
-          setUser(userResp);
-        }
-      });
-  }, []);
-
-  function handleUserNameChange(e: ChangeEvent<HTMLInputElement>) {
-    setUsername(e.target.value);
-  }
-
-  function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
-    setPassword(e.target.value);
-  }
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const response = await fetch("/api/authentication/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    });
-
-    if (response.ok) {
-      const userResp = await response.json();
-      setUser(userResp);
-      navigate("/"); // Redirect user to the home page
-    } else {
-      // Handle error - show error message or take appropriate action
-    }
-  }
+  const { loading, post } = useFetch("/api/authentication/login", {
+    method: "post",
+    onNewData: (_, x) => {
+      if (typeof x === "string") {
+        setError(x);
+      } else if (typeof x === "object") {
+        console.log("we logged in as: ");
+        console.log(x);
+        authContext?.setUser(x);
+        navigate("/");
+        // TODO: save in context and redirect to home page
+      }
+    },
+  });
 
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" value={username} onChange={handleUserNameChange} />
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange} />
-          <button type="submit">Log In</button>
-        </form>
-      </div>
-      {user && (
-        <div>
-          <p>Welcome, {user.username}!</p>
-          {/* Additional user-related UI can go here */}
-        </div>
-      )}
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="email">Email</label>
+      <input
+        id="email"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+        type="text"
+        autoComplete="email"
+        placeholder="Email"
+        required
+      />
+      <label htmlFor="password">Password</label>
+      <input
+        id="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        type="password"
+        autoComplete="password"
+        required
+      />
+      {loading ? "Checking Login..." : null}
+      {error ? error : null}
+      <button type="submit" disabled={loading}>
+        Submit
+      </button>
+    </form>
   );
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault(); // stops the browser from causing a page refresh - more on this in the lecture
+
+    if (loading) {
+      return;
+    }
+
+    post({
+      userName: userName,
+      password: password,
+    });
+
+    // TODO: call /me, redirect
+  }
 }

@@ -1,16 +1,38 @@
 import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
-
-
-
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../../AuthContext";
+import UserDto from "../../UserDto";
+import useFetch from "use-http";
 
 
 
 
 export default function MainLayout() {
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState<null | undefined | UserDto>(undefined);
+
+  useFetch(
+    "/api/authentication/me",
+    {
+      onNewData: (_, x) => {
+        console.log(x);
+        if (typeof x === "object") {
+          setCurrentUser(x);
+        } else {
+          setCurrentUser(null);
+        }
+      },
+    },
+    []
+  );
+
+  useEffect(() => {
+    console.log("layout loaded");
+  }, []);
 
   return (
     <>
@@ -40,8 +62,24 @@ export default function MainLayout() {
                 color="inherit"
                 onClick={() => navigate("/login")}
               >
-                Login
+
               </Button>
+              <nav>
+      <Link to="/login">Login</Link>
+      {authContext?.user === undefined ? (
+        <></>
+      ) : authContext?.user !== null ? (
+        <>
+          Current user: {authContext.user.userName}
+        </>
+      ) : (
+        <>Not logged in</>
+      )}
+    </nav>
+    <AuthContext.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
+
+    </AuthContext.Provider>
+    
             </Toolbar>
           </AppBar>
           <Toolbar />
