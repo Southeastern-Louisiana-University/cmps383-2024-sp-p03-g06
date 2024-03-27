@@ -12,10 +12,16 @@ public class UsersController : ControllerBase
 {
     private readonly UserManager<User> userManager;
 
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable IDE0290 // Use primary constructor
     public UsersController(UserManager<User> userManager)
+#pragma warning restore IDE0079 // Remove unnecessary suppression
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning restore IDE0290 // Use primary constructor
     {
         this.userManager = userManager;
     }
+#pragma warning restore IDE0079 // Remove unnecessary suppression
 
     [HttpPost]
     [Authorize(Roles = RoleNames.Admin)]

@@ -14,7 +14,9 @@ public class AuthenticationController : ControllerBase
     private readonly SignInManager<User> signInManager;
     private readonly UserManager<User> userManager;
 
+#pragma warning disable IDE0290 // Use primary constructor
     public AuthenticationController(
+#pragma warning restore IDE0290 // Use primary constructor
         SignInManager<User> signInManager,
         UserManager<User> userManager)
     {
