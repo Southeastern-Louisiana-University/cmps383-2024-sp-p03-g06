@@ -27,7 +27,7 @@ export default function CitySearch(){
       [searchTerm]
     );
 
-    const hotels = cities?.hotels
+    //const hotels = cities?.hotels
     
   
     if (loading) {
