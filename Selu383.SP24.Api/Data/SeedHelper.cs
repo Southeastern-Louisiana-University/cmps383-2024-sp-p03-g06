@@ -11,11 +11,11 @@ public static class SeedHelper
     {
         var dataContext = serviceProvider.GetRequiredService<DataContext>();
 
-        await dataContext.Database.MigrateAsync();
+        //await dataContext.Database.MigrateAsync();
 
         await AddRoles(serviceProvider);
         await AddUsers(serviceProvider);
-        await AddCities(dataContext);
+        //await AddCities(dataContext);
         await AddHotels(dataContext);
         
     }

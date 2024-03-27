@@ -5,6 +5,7 @@ import App from "./routes/HomePage/HomePage";
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Reservations from "./routes/Reservations/reservations";
+import CitySearch from "./features/shared/CitySearch";
 
 
  const router = createBrowserRouter([
@@ -15,6 +16,13 @@ import Reservations from "./routes/Reservations/reservations";
       {
         path: "/",
         element: <App />,
+        children:[
+          
+        ],
+      },
+      {
+        path: "/find-city",
+        element: <CitySearch />
       },
       {
         path: "/reservations",
