@@ -107,12 +107,12 @@ public static class SeedHelper
 
         dataContext.Set<City>().Add(new City
         {
-            Location = "Baton Rouge"
-        });
+            Location = "Baton Rouge",
+        }) ;
 
         dataContext.Set<City>().Add(new City
         {
-            Location = "New Orleans"
+            Location = "New Orleans",
         });
 
         await dataContext.SaveChangesAsync();

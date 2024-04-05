@@ -1,13 +1,12 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import App from "./routes/HomePage/HomePage";
 
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Reservations from "./routes/Reservations/reservations";
+import ListHotels from "./routes/Hotel/List-Hotels.tsx";
 
-
- const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -20,6 +19,10 @@ import Reservations from "./routes/Reservations/reservations";
         path: "/reservations",
         element: <Reservations />,
       },
+      {
+        path: "/hotels",
+        element: <ListHotels />,
+      },
     ],
   },
 
@@ -28,4 +31,4 @@ import Reservations from "./routes/Reservations/reservations";
     element: <LogIn />,
   },
 ]);
-export default router
+export default router;
