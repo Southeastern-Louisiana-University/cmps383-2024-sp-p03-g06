@@ -66,6 +66,8 @@ export default function MainLayout() {
               </Button>
               <nav>
       <Link to="/login">Login</Link>
+      <AuthContext.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
+      </AuthContext.Provider>
       {authContext?.user === undefined ? (
         <></>
       ) : authContext?.user !== null ? (
@@ -76,9 +78,7 @@ export default function MainLayout() {
         <>Not logged in</>
       )}
     </nav>
-    <AuthContext.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
-
-    </AuthContext.Provider>
+    
     
             </Toolbar>
           </AppBar>
