@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Security.Cryptography.Xml;
 
 namespace Selu383.SP24.Api.Features.Hotels
 {
@@ -7,11 +8,15 @@ namespace Selu383.SP24.Api.Features.Hotels
     {
         public void Configure(EntityTypeBuilder<City> builder)
         {
-            builder
-                .HasMany(x => x.Hotels)
-                .WithOne(x => x.City)
-                .HasForeignKey(x => x.CityId)
+            builder.Property(x => x.Location)
+                .HasMaxLength(70)
                 .IsRequired();
+
+            builder
+                 .HasMany(x => x.Hotel)
+                 .WithOne(x => x.City)
+                 .HasForeignKey(x => x.CityId)
+                 .IsRequired();
         }
 
     }

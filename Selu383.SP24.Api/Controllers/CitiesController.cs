@@ -64,13 +64,24 @@ public class CitiesController : ControllerBase
         return CreatedAtAction(nameof(GetCityById), new { id = dto.Id }, dto);
     }
 
+    [HttpPost("find")]
+    public IQueryable<CityDto> FindCities(FindCityDto findCityDto)
+    {
+        var terms = findCityDto?.SearchTerm?.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var filtered = cities
+            .Where(x => terms!.Any(y => x.Location!.Contains(y)));
+
+        return GetCityDtos(filtered);
+    }
+
+
     private static IQueryable<CityDto> GetCityDtos(IQueryable<City> cities)
     {
         return cities
             .Select(x => new CityDto
             {
                 Id = x.Id,
-                Location = x.Location
+                Location = x.Location,
             });
     }
 
