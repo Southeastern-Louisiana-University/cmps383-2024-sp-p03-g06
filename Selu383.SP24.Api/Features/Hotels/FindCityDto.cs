@@ -3,7 +3,7 @@
    
         public class FindCityDto
         {
-            public string? SearchTerm { get; set; }
+            public required string SearchTerm { get; set; }
         }
     
 }

@@ -223,6 +223,22 @@ namespace Selu383.SP24.Api.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
+            modelBuilder.Entity("Selu383.SP24.Api.Features.Hotels.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("City", (string)null);
+                });
+
             modelBuilder.Entity("Selu383.SP24.Api.Features.Hotels.Hotel", b =>
                 {
                     b.Property<int>("Id")
@@ -235,9 +251,8 @@ namespace Selu383.SP24.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ManagerId")
                         .HasColumnType("int");
@@ -249,9 +264,11 @@ namespace Selu383.SP24.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("Hotel");
+                    b.ToTable("Hotel", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -311,9 +328,17 @@ namespace Selu383.SP24.Api.Migrations
 
             modelBuilder.Entity("Selu383.SP24.Api.Features.Hotels.Hotel", b =>
                 {
+                    b.HasOne("Selu383.SP24.Api.Features.Hotels.City", "City")
+                        .WithMany("Hotel")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Selu383.SP24.Api.Features.Authorization.User", "Manager")
                         .WithMany("Hotels")
                         .HasForeignKey("ManagerId");
+
+                    b.Navigation("City");
 
                     b.Navigation("Manager");
                 });
@@ -328,6 +353,11 @@ namespace Selu383.SP24.Api.Migrations
                     b.Navigation("Hotels");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("Selu383.SP24.Api.Features.Hotels.City", b =>
+                {
+                    b.Navigation("Hotel");
                 });
 #pragma warning restore 612, 618
         }

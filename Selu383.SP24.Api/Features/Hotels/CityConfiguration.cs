@@ -8,6 +8,10 @@ namespace Selu383.SP24.Api.Features.Hotels
     {
         public void Configure(EntityTypeBuilder<City> builder)
         {
+            builder.Property(x => x.Location)
+                .HasMaxLength(70)
+                .IsRequired();
+
             builder
                  .HasMany(x => x.Hotel)
                  .WithOne(x => x.City)

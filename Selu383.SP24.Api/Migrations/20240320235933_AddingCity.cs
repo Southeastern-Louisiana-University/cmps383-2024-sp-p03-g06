@@ -10,18 +10,29 @@ namespace Selu383.SP24.Api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM [dbo].[Hotel]");
-            migrationBuilder.DropColumn(
-                name: "CityId",
-                table: "Hotel"
-                );
 
-            migrationBuilder.AddColumn<string>(
-                name: "City",
+
+
+            migrationBuilder.Sql("DELETE FROM [dbo].[hotel]");
+            migrationBuilder.AddColumn<int>(
+                name: "CityId",
                 table: "Hotel",
-                type: "string",
+                type: "int",
                 nullable: false,
-                defaultValue: ""
+                defaultValue: 0);
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                }
                 );
 
             migrationBuilder.CreateIndex(

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useFetch } from "use-http";
 import './CitySearch.css';
 import { HotelDto } from "../../Dtos/HotelDto";
-import { Button, Form } from "react-bootstrap";
+import { Button, } from "react-bootstrap";
 import { AppBar, Toolbar } from "@mui/material";
 
 
@@ -21,12 +21,9 @@ export default function CitySearch(){
       "/api/hotels/find",
       {
         method: "post",
-        headers: {
-          "Content-Type" : "application/json",
-        },
-        body: JSON.stringify( {
+        body: {
           searchTerm: searchTerm,
-        }),
+        },
       },
       [searchTerm]
     );   

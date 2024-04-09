@@ -10,7 +10,7 @@ public class Hotel
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Address { get; set; }
-    public City? City { get; set; }
+    public City City { get; set; } = new City();
     public int CityId { get; set; }
     public int? ManagerId { get; set; }
     public virtual User? Manager { get; set; }
@@ -18,12 +18,3 @@ public class Hotel
     public virtual ICollection<Reservation>? Reservations { get; set; }
 }
 
-/*public class HotelEntityTypeConfiguration : IEntityTypeConfiguration<Hotel>
-{
-    public void Configure(EntityTypeBuilder<Hotel> builder)
-    {
-        builder.ToTable("Hotels");
-
-        builder.HasOne(x => x.City);
-    }
-}*/
