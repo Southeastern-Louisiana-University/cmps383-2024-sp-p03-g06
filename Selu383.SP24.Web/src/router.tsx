@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./routes/HomePage/HomePage";
-
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Reservations from "./routes/Reservations/reservations";
-import ListHotels from "./routes/Hotel/List-Hotels.tsx";
+import CitySearch from "./features/shared/CitySearch";
+import HomePage from "./routes/HomePage/HomePage";
+import HotelDetail from "./routes/HotelDetails/HotelDetail";
 
 const router = createBrowserRouter([
   {
@@ -13,15 +13,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <HomePage />,
+        children:[
+          
+        ],
+      },
+      {
+        path: "/find-city",
+        element: <CitySearch />
       },
       {
         path: "/reservations",
         element: <Reservations />,
       },
+
       {
-        path: "/hotels",
-        element: <ListHotels />,
+        path:"/hotel-details/:id",
+        element: <HotelDetail/>
       },
     ],
   },

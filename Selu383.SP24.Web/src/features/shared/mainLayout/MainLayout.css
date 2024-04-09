@@ -6,3 +6,11 @@
 .MuiTypography-h4{
     font-family: 'Lobster';
 }
+
+a{
+    color: white;
+}
+
+a:hover{
+    color:#D8B4FE;
+}

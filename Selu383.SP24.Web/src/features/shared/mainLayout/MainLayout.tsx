@@ -1,11 +1,7 @@
 import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
-
-
-
-
 
 
 
@@ -36,12 +32,11 @@ export default function MainLayout() {
               >
                 EnStay
               </Typography>
-              <Button 
-                color="inherit"
-                onClick={() => navigate("/login")}
-              >
+              <Link 
+                
+                onClick={() => navigate("/login")} to={""}              >
                 Login
-              </Button>
+              </Link>
             </Toolbar>
           </AppBar>
           <Toolbar />

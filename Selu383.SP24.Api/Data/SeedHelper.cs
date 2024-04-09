@@ -17,6 +17,8 @@ public static class SeedHelper
         await AddUsers(serviceProvider);
         await AddCities(dataContext);
         await AddHotels(dataContext);
+
+        //dataContext.SaveChanges();
         
     }
 
@@ -70,34 +72,8 @@ public static class SeedHelper
         });
     }
 
-    private static async Task AddHotels(DataContext dataContext)
-    {
-        var hotels = dataContext.Set<Hotel>();
-
-        if (await hotels.AnyAsync())
-        {
-            return;
-        }
-
-        var cities = await dataContext.Set<City>().ToListAsync();
-
-        for (int i = 0; i < 4; i++)
-        {
-            dataContext.Set<Hotel>()
-                .Add(new Hotel
-                {
-                    Name = "Hammond " + i,
-                    Address = "1234 Place st",
-                    CityId = cities[0].Id
-                });
-        }
-
-        await dataContext.SaveChangesAsync();
-    }
-
     private static async Task AddCities(DataContext dataContext)
     {
-
         var cities = dataContext.Set<City>();
 
         if (await cities.AnyAsync())
@@ -107,18 +83,36 @@ public static class SeedHelper
 
         dataContext.Set<City>().Add(new City
         {
-            Location = "Baton Rouge",
-        }) ;
-
-        dataContext.Set<City>().Add(new City
-        {
-            Location = "New Orleans",
+            Location = "Baton Rouge"
         });
 
-        await dataContext.SaveChangesAsync();
-
-
+            await dataContext.SaveChangesAsync();
     }
+
+    private static async Task AddHotels(DataContext dataContext)
+    {
+        var hotels = dataContext.Set<Hotel>();
+
+        if ( await hotels.AnyAsync())
+        {
+            return;
+        }
+
+        var cities = await dataContext.Set<City>().ToListAsync();
+
+        dataContext.Set<Hotel>()
+            .Add(new Hotel
+            {
+                Name = "Heartbreak Hotel",
+                Address = "123 Poydras st",
+                CityId = cities[0].Id,
+                City = cities[0]
+            });
+        //dataContext.SaveChanges();
+
+        await dataContext.SaveChangesAsync();
+    }
+
 
 
 }

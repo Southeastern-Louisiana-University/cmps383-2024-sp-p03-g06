@@ -10,7 +10,10 @@ namespace Selu383.SP24.Api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM [dbo].[Hotel]");
+
+
+
+            migrationBuilder.Sql("DELETE FROM [dbo].[hotel]");
             migrationBuilder.AddColumn<int>(
                 name: "CityId",
                 table: "Hotel",
@@ -24,12 +27,13 @@ namespace Selu383.SP24.Api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_City", x => x.Id);
-                });
+                }
+                );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hotel_CityId",
