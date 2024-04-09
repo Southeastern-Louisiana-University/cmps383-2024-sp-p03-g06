@@ -3,7 +3,7 @@
     public class City
     {
         public int Id { get; set; }
-        public string? Location { get; set; }
+        public required string Location { get; set; }
         public ICollection<Hotel>? Hotel { get; set; }
     }
 }

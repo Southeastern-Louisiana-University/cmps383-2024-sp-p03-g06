@@ -105,7 +105,7 @@ public static class SeedHelper
             {
                 Name = "Heartbreak Hotel",
                 Address = "123 Poydras st",
-                CityId = cities[0].Id,
+                CityId = cities[1].Id,
             });
         //dataContext.SaveChanges();
 

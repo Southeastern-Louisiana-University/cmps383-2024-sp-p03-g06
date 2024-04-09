@@ -67,11 +67,9 @@ public class CitiesController : ControllerBase
     [HttpPost("find")]
     public IQueryable<CityDto> FindCities(FindCityDto findCityDto)
     {
-        var terms = findCityDto.SearchTerm.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        var terms = findCityDto?.SearchTerm?.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         var filtered = cities
-            .Where(x => terms.Any(y => x.Location.Contains(y)));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            .Where(x => terms!.Any(y => x.Location!.Contains(y)));
 
         return GetCityDtos(filtered);
     }

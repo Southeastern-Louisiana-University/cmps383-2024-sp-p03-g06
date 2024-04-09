@@ -31,8 +31,10 @@ public class HotelsController : ControllerBase
     public IQueryable<HotelDto> FindHotels(FindHotelDto findHotelDto)
     {
         var terms = findHotelDto.SearchTerm.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var filtered = hotels
             .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         return GetHotelDtos(filtered);
     }
@@ -159,6 +161,7 @@ public class HotelsController : ControllerBase
     private static IQueryable<HotelDto> GetHotelDtos(IQueryable<Hotel> hotels)
     {
 
+#pragma warning disable CS8601 // Possible null reference assignment.
         return hotels
             .Select(x => new HotelDto
             {
@@ -168,6 +171,7 @@ public class HotelsController : ControllerBase
                 ManagerId = x.ManagerId
 
             });
+#pragma warning restore CS8601 // Possible null reference assignment.
 
     }
 }
