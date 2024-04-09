@@ -73,12 +73,12 @@ public static class SeedHelper
 
     private static async Task AddHotels(DataContext dataContext)
     {
-        var hotels = dataContext.Hotel.ToList();
+        var hotels = dataContext.Set<Hotel>();
 
-        /*if ( hotels.Count >= 1)
+        if ( await hotels.AnyAsync())
         {
             return;
-        }*/
+        }
 
         dataContext.Set<Hotel>()
             .Add(new Hotel
