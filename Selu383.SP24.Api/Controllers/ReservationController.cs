@@ -8,7 +8,7 @@ namespace Selu383.SP24.Api.Controllers
 {
     [Route("api/reservation")]
     [ApiController]
-    public class ReservationController : ControllerBase
+    public class ReservationsController : ControllerBase
     {
         private readonly DbSet<Reservation> reservations;
         private readonly DataContext dataContext;
