@@ -27,6 +27,16 @@ public class HotelsController : ControllerBase
         return GetHotelDtos(hotels);
     }
 
+    [HttpPost("find")]
+    public IQueryable<HotelDto> FindHotels(FindHotelDto findHotelDto)
+    {
+        var terms = findHotelDto.SearchTerm?.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var filtered = hotels
+            .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm));
+
+        return GetHotelDtos(filtered);
+    }
+
     [HttpGet]
     [Route("{id}")]
     public ActionResult<HotelDto> GetHotelById(int id)
@@ -53,6 +63,7 @@ public class HotelsController : ControllerBase
         {
             Name = dto.Name,
             Address = dto.Address,
+            CityId = dto.CityId,
             ManagerId = dto.ManagerId
         };
         hotels.Add(hotel);
@@ -147,14 +158,16 @@ public class HotelsController : ControllerBase
 
     private static IQueryable<HotelDto> GetHotelDtos(IQueryable<Hotel> hotels)
     {
+
         return hotels
             .Select(x => new HotelDto
             {
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-                ManagerId = x.ManagerId
+                ManagerId = (int)x.ManagerId
 
             });
+
     }
 }
