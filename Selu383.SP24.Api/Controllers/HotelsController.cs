@@ -167,6 +167,7 @@ public class HotelsController : ControllerBase
                 Address = x.Address,
                 City = x.City,
                 ManagerId = x.ManagerId
+
             });
 
     }

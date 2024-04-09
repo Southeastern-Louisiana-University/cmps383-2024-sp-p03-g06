@@ -14,18 +14,11 @@ public class DataContext : IdentityDbContext<User, Role, int, IdentityUserClaim<
     public DataContext()
     {
     }
-    public virtual DbSet<Hotel> Hotel { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        /*modelBuilder.Entity<Hotel>().HasData(new Hotel
-        {
-            Id = 1,
-            Name = "Test",
-            City = "New Orleans",
-            Address = "123 Poydras st"
-        });*/
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
     }

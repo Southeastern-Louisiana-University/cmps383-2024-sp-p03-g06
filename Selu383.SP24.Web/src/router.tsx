@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import { LogIn } from "./routes/Login/LogIn";
 import MainLayout from "./features/shared/mainLayout/MainLayout";
@@ -7,8 +6,7 @@ import CitySearch from "./features/shared/CitySearch";
 import HomePage from "./routes/HomePage/HomePage";
 import HotelDetail from "./routes/HotelDetails/HotelDetail";
 
-
- const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -41,4 +39,4 @@ import HotelDetail from "./routes/HotelDetails/HotelDetail";
     element: <LogIn />,
   },
 ]);
-export default router
+export default router;
