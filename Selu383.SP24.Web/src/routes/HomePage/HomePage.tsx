@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const pastMonth = new Date(2024, 1, 1);
 
 
-function App() {
+function HomePage() {
 
 
   const defaultSelected: DateRange = {
@@ -68,4 +68,4 @@ const darkTheme = createTheme({
   },
 });
 
-export default App;
+export default HomePage;

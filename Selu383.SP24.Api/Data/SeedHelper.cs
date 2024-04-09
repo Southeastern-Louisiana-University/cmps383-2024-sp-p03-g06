@@ -11,12 +11,13 @@ public static class SeedHelper
     {
         var dataContext = serviceProvider.GetRequiredService<DataContext>();
 
-        //await dataContext.Database.MigrateAsync();
+        await dataContext.Database.MigrateAsync();
 
         await AddRoles(serviceProvider);
         await AddUsers(serviceProvider);
-        //await AddCities(dataContext);
         await AddHotels(dataContext);
+
+        //dataContext.SaveChanges();
         
     }
 
@@ -72,53 +73,25 @@ public static class SeedHelper
 
     private static async Task AddHotels(DataContext dataContext)
     {
-        var hotels = dataContext.Set<Hotel>();
+        var hotels = dataContext.Hotel.ToList();
 
-        if (await hotels.AnyAsync())
+        /*if ( hotels.Count >= 1)
         {
             return;
-        }
+        }*/
 
-        var cities = await dataContext.Set<City>().ToListAsync();
-
-        for (int i = 0; i < 4; i++)
-        {
-            dataContext.Set<Hotel>()
-                .Add(new Hotel
-                {
-                    Name = "Hammond " + i,
-                    Address = "1234 Place st",
-                    CityId = cities[0].Id
-                });
-        }
+        dataContext.Set<Hotel>()
+            .Add(new Hotel
+            {
+                Name = "Heartbreak Hotel",
+                Address = "123 Poydras st",
+                City = "New Orleans",
+            });
+        //dataContext.SaveChanges();
 
         await dataContext.SaveChangesAsync();
     }
 
-    private static async Task AddCities(DataContext dataContext)
-    {
-
-        var cities = dataContext.Set<City>();
-
-        if (await cities.AnyAsync())
-        {
-            return;
-        }
-
-        dataContext.Set<City>().Add(new City
-        {
-            Location = "Baton Rouge"
-        });
-
-        dataContext.Set<City>().Add(new City
-        {
-            Location = "New Orleans"
-        });
-
-        await dataContext.SaveChangesAsync();
-
-
-    }
 
 
 }

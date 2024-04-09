@@ -23,6 +23,7 @@ namespace Selu383.SP24.Api.Migrations
                 {
                     table.PrimaryKey("PK_Hotel", x => x.Id);
                 });
+
         }
 
         /// <inheritdoc />

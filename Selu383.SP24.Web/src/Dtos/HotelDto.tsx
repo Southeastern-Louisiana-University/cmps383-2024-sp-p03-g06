@@ -5,5 +5,5 @@ export interface HotelDto{
     name: string;
     address: string;
     managerId: number | null;
-    city: CityDto;
+    city: string;
 }

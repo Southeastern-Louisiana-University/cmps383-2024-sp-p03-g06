@@ -45,7 +45,7 @@ public class CitiesController : ControllerBase
     public ActionResult<CityDto> CreateCity(CityDto dto)
     {
 
-        if (string.IsNullOrWhiteSpace(dto.Location) || dto.Location.Length > 100)
+        if (string.IsNullOrWhiteSpace(dto.Name) || dto.Name.Length > 100)
         {
             return BadRequest();
         }
@@ -53,7 +53,7 @@ public class CitiesController : ControllerBase
         var city = new City
         {
             Id = dto.Id,
-            Location = dto.Location,
+            Name = dto.Name,
         };
         cities.Add(city);
 
@@ -68,8 +68,10 @@ public class CitiesController : ControllerBase
     public IQueryable<CityDto> FindCities(FindCityDto findCityDto)
     {
         var terms = findCityDto.SearchTerm.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var filtered = cities
-            .Where(x => terms.Any(y => x.Location.Contains(y)));
+            .Where(x => terms.Any(y => x.Name.Contains(y)));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         return GetCityDtos(filtered);
     }
@@ -81,8 +83,7 @@ public class CitiesController : ControllerBase
             .Select(x => new CityDto
             {
                 Id = x.Id,
-                Location = x.Location,
-                Hotels = x.Hotels
+                Name = x.Name,
             });
     }
 
