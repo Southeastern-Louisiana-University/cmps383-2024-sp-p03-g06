@@ -1,14 +1,16 @@
-import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
+import { AppBar, Box, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
+import {useEffect, useState } from "react";
+import UserDto from "../../UserDto";
+import useFetch from "use-http";
 
 
 
 export default function MainLayout() {
   const navigate = useNavigate();
-  const authContext = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState<null | undefined | UserDto>(undefined);
+  const [, setCurrentUser] = useState<null | undefined | UserDto>(undefined);
 
   useFetch(
     "/api/authentication/me",
