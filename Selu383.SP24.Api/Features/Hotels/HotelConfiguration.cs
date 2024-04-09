@@ -15,7 +15,7 @@ public class HotelConfiguration : IEntityTypeConfiguration<Hotel>
             .IsRequired();
 
         builder.HasOne(x => x.City)
-            .WithMany(x => x.Hotel)
+            .WithMany(x => x.Hotels)
             .HasForeignKey(x => x.CityId)
             .IsRequired();
     }

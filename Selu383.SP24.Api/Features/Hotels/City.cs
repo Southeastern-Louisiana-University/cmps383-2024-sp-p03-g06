@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string? Location { get; set; }
-        public virtual ICollection<Hotel>? Hotel { get; set; }
+        public virtual ICollection<Hotel>? Hotels { get; set; }
     }
 }
