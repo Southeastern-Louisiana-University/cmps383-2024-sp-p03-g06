@@ -4,7 +4,7 @@ public class UserDto
 {
     public int Id { get; set; }
     public string UserName { get; set; } = string.Empty;
-#pragma warning disable IDE0301 // Simplify collection initialization
+    public string? Password { get; set; }
+
     public string[] Roles { get; set; } = Array.Empty<string>();
-#pragma warning restore IDE0301 // Simplify collection initialization
 }
