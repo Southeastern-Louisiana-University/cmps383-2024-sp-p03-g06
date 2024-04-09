@@ -32,7 +32,7 @@ public class HotelsController : ControllerBase
     {
         var terms = findHotelDto.SearchTerm.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         var filtered = hotels
-            .Where(x => x.City.Contains(findHotelDto.SearchTerm));
+            .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm));
 
         return GetHotelDtos(filtered);
     }
@@ -63,7 +63,7 @@ public class HotelsController : ControllerBase
         {
             Name = dto.Name,
             Address = dto.Address,
-            City = dto.City,
+            CityId = dto.CityId,
             ManagerId = dto.ManagerId
         };
         hotels.Add(hotel);
@@ -165,7 +165,6 @@ public class HotelsController : ControllerBase
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-                City = x.City,
                 ManagerId = x.ManagerId
 
             });

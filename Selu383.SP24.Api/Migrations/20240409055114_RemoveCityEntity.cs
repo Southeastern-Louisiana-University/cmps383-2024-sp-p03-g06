@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿/*using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -74,4 +74,4 @@ namespace Selu383.SP24.Api.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
     }
-}
+}*/

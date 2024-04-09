@@ -14,7 +14,9 @@ public class HotelConfiguration : IEntityTypeConfiguration<Hotel>
         builder.Property(x => x.Address)
             .IsRequired();
 
-        builder.Property(x => x.City) 
+        builder.HasOne(x => x.City)
+            .WithMany(x => x.Hotel)
+            .HasForeignKey(x => x.CityId)
             .IsRequired();
 
     }
