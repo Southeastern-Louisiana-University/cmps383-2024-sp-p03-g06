@@ -1,14 +1,4 @@
 import "./HomePage.css";
-
-import { AppBar, Badge, Box, Divider, IconButton, InputBase, Link, Menu, MenuItem, Modal, ThemeProvider, Toolbar, createTheme, styled } from "@mui/material";
-import { Space, Container } from '@mantine/core';
-import React, { useEffect, useState } from "react";
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { addDays, format } from 'date-fns';
-import { DateRange, DayPicker } from 'react-day-picker';
-import { HotelDto } from '../Hotel/HotelDto';
 import {
   AppBar,
   Badge,
@@ -36,7 +26,7 @@ import { DateRange, DayPicker } from "react-day-picker";
 import Carousel from "react-material-ui-carousel";
 import { HotelDto } from "../Hotel/HotelDto";
 import { useNavigate } from "react-router-dom";
-import ListHotels from "../Hotel/List-Hotels";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,9 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pastMonth = new Date(2024, 1, 1);
 
-
-
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Item(props: any) {
   return (
     <Paper>
@@ -188,11 +176,7 @@ function App() {
   );
 
   const style = {
-    position: 'absolute' ,
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    position: "absolute" as "absolute",
+    position: "absolute" as const,
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -300,7 +284,6 @@ function App() {
 
           {renderMenu}
         </Container>
-        <Space h="md"/>
         <Container className="carousel-container">
           <Carousel className="carousel">
             {photos.map((photo, i) => (
