@@ -26,13 +26,14 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  margin-left: 0;
   display: flex;
   justify-content: center;
   min-width: 320px;
   width: 100%;
   max-width: 100%;
   min-height: 100vh;
+  background-image: linear-gradient(200deg,#D8B4FE, #FFFFFF );
 }
 
 
@@ -89,6 +90,10 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
+    background-image: linear-gradient(200deg,#D8B4FE, #FFFFFF );
+  }
+
+  .login{
     background-image: linear-gradient(200deg,#D8B4FE, #FFFFFF );
   }
   a:hover {

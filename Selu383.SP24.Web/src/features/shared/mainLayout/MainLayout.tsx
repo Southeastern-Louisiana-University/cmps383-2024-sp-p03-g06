@@ -2,11 +2,6 @@ import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, cr
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../AuthContext";
-import UserDto from "../../UserDto";
-import useFetch from "use-http";
-
 
 
 
@@ -58,28 +53,11 @@ export default function MainLayout() {
               >
                 EnStay
               </Typography>
-              <Button 
-                color="inherit"
-                onClick={() => navigate("/login")}
-              >
-
-              </Button>
-              <nav>
-      <Link to="/login">Login</Link>
-      <AuthContext.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
-      </AuthContext.Provider>
-      {authContext?.user === undefined ? (
-        <></>
-      ) : authContext?.user !== null ? (
-        <>
-          Current user: {authContext.user.userName}
-        </>
-      ) : (
-        <>Not logged in</>
-      )}
-    </nav>
-    
-    
+              <Link 
+                
+                onClick={() => navigate("/login")} to={""}              >
+                Login
+              </Link>
             </Toolbar>
           </AppBar>
           <Toolbar />
