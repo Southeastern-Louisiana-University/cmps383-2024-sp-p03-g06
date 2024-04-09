@@ -8,7 +8,7 @@ namespace Selu383.SP24.Api.Features.Hotels
         public void Configure(EntityTypeBuilder<City> builder)
         {
             builder
-                .HasMany(x => x.Hotel)
+                .HasMany(x => x.Hotels)
                 .WithOne(x => x.City)
                 .HasForeignKey(x => x.CityId)
                 .IsRequired();
