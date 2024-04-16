@@ -14,6 +14,7 @@ public class HotelsController : ControllerBase
 {
     private readonly DbSet<Hotel> hotels;
     private readonly DataContext dataContext;
+    private readonly DbSet<City> cities;
 
     public HotelsController(DataContext dataContext)
     {
@@ -165,8 +166,6 @@ public class HotelsController : ControllerBase
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-                ManagerId = (int)x.ManagerId
-
             });
 
     }

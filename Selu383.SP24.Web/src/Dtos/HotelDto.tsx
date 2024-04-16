@@ -6,5 +6,6 @@ export interface HotelDto{
     name: string;
     address: string;
     managerId: number | null;
+    cityId: number;
     city: CityDto;
 }
