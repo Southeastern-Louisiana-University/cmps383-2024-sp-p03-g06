@@ -32,8 +32,10 @@ public class HotelsController : ControllerBase
     public IQueryable<HotelDto> FindHotels(FindHotelDto findHotelDto)
     {
         var terms = findHotelDto.SearchTerm?.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var filtered = hotels
             .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm??""));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         return GetHotelDtos(filtered);
     }
