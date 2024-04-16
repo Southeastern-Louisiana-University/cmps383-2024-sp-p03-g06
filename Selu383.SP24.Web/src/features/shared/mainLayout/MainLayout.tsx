@@ -24,14 +24,16 @@ export default function MainLayout() {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography 
-                variant="h4" 
-                component="div" 
-                sx={{ flexGrow: 1 }}
-                
-              >
-                EnStay
-              </Typography>
+              
+                <Typography 
+                  variant="h4" 
+                  component="div" 
+                  sx={{ flexGrow: 1 }}
+                  
+                ><Link to={`/`}>
+                  EnStay</Link>
+                </Typography>
+              
               <Link 
                 
                 onClick={() => navigate("/login")} to={""}              >

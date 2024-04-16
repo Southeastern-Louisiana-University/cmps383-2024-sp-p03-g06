@@ -82,23 +82,22 @@ export default function CitySearch(){
                     <>
                       <br />
                       <div className="container">
-                        <div className="row" style={{ backgroundColor: 'rgba(255,255,255,.95)' }}>
-                          <div className="col-1"></div>
-                          <div className="col-8">
-                            <div>
-                              <br />
-                              <h2>{hotel.name}</h2>
-                              <p>{hotel.address}</p>
+                        <Link to={`/hotel-details/${hotel.id}`}>
+                          <div className="row" style={{ backgroundColor: 'rgba(255,255,255,.95)' }}>
+                            <div className="col-1"></div>
+                            <div className="col-8">
+                              <div>
+                                <br />
+                                <h2>{hotel.name}</h2>
+                                <p>{hotel.address}</p>
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-2">
-                            <br />
-                            <Link to={`/hotel-details/${hotel.id}`}>
-                                <Button variant="secondary background-1">Book a Reservation</Button>{" "}
-                            </Link>
-                          </div>
-                          <div className="col-1"></div>
-                        </div>
+                            <div className="col-2">
+                              <br />
+                            </div>
+                            <div className="col-1"></div>
+                          </div> 
+                        </Link>
                       </div>
                       <br />
                     </>
