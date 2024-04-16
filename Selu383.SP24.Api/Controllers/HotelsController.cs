@@ -14,6 +14,7 @@ public class HotelsController : ControllerBase
 {
     private readonly DbSet<Hotel> hotels;
     private readonly DataContext dataContext;
+    // readonly DbSet<City>? cities;
 
     public HotelsController(DataContext dataContext)
     {
@@ -32,7 +33,7 @@ public class HotelsController : ControllerBase
     {
         var terms = findHotelDto.SearchTerm?.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         var filtered = hotels
-            .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm));
+            .Where(x => x.City.Location.Contains(findHotelDto.SearchTerm??""));
 
         return GetHotelDtos(filtered);
     }
@@ -164,8 +165,7 @@ public class HotelsController : ControllerBase
             {
                 Id = x.Id,
                 Name = x.Name,
-                Address = x.Address
-
+                Address = x.Address,
             });
 
     }
