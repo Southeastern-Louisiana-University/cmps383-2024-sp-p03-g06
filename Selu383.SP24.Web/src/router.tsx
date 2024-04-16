@@ -9,6 +9,8 @@ import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Reservations from "./routes/Reservations/reservations";
 import  Registration  from "./routes/Registration/Registration";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",

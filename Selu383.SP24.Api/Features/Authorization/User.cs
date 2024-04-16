@@ -9,5 +9,5 @@ public class User : IdentityUser<int>
 
     public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
-    public string Password { get; internal set; }
+  
 }

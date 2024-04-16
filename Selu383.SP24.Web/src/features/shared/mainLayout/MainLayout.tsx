@@ -1,16 +1,20 @@
-import { AppBar, Box, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
+import { AppBar, Box,IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import UserDto from "../../UserDto";
 import useFetch from "use-http";
+import LogoutButton from "../../Logoutbutton";
+import AuthContext from "../../AuthContext";
+
 
 
 
 export default function MainLayout() {
   const navigate = useNavigate();
-  const [, setCurrentUser] = useState<null | undefined | UserDto>(undefined);
+  const [currentUser, setCurrentUser] = useState<null | undefined | UserDto>(undefined);
+  const authContext = useContext(AuthContext);
 
   useFetch(
     "/api/authentication/me",
@@ -60,6 +64,22 @@ export default function MainLayout() {
                 onClick={() => navigate("/login")} to={""}              >
                 Login
               </Link>
+              
+              <Link 
+             //  sx={{ mt: 3, mb: 2 }}
+                onClick={() => (LogoutButton)} to={""}              >
+                Logout
+              </Link>
+              {authContext?.user === undefined ? (
+        <>Checking user</>
+      ) : authContext?.user !== null ? (
+        <>
+          Current user: {authContext.user.userName} <LogoutButton>Logout</LogoutButton>
+        </>
+      ) : (
+        <>Not logged in</>
+      )}
+      <AuthContext.Provider value={{ user: currentUser, setUser: setCurrentUser }}></AuthContext.Provider>
             </Toolbar>
           </AppBar>
           <Toolbar />

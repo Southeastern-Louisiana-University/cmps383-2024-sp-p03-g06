@@ -30,7 +30,6 @@ public class UsersController : ControllerBase
         var newUser = new User
         {
             UserName = dto.UserName,
-
         };
         var createResult = await userManager.CreateAsync(newUser, dto.Password);
         if (!createResult.Succeeded)
@@ -56,7 +55,7 @@ public class UsersController : ControllerBase
         return Ok(new UserDto
         {
             Id = newUser.Id,
-            Password = newUser.Password,
+            Roles = dto.Roles,
             UserName = newUser.UserName,
         });
     }
