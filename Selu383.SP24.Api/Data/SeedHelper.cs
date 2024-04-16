@@ -72,6 +72,7 @@ public static class SeedHelper
         });
     }
 
+
     private static async Task AddCities(DataContext dataContext)
     {
         var cities = dataContext.Set<City>();
@@ -109,6 +110,8 @@ public static class SeedHelper
                 City = cities[0]
             });
         //dataContext.SaveChanges();
+
+
 
         await dataContext.SaveChangesAsync();
     }
