@@ -164,8 +164,7 @@ public class HotelsController : ControllerBase
             {
                 Id = x.Id,
                 Name = x.Name,
-                Address = x.Address,
-                ManagerId = (int)x.ManagerId
+                Address = x.Address
 
             });
 
