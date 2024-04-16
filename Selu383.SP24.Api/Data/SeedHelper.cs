@@ -83,17 +83,19 @@ public static class SeedHelper
 
         dataContext.Set<City>().Add(new City
         {
-            Location = "Baton Rouge"
+            Location = "New Orleans"
         });
 
-            await dataContext.SaveChangesAsync();
+        
+
+        await dataContext.SaveChangesAsync();
     }
 
     private static async Task AddHotels(DataContext dataContext)
     {
         var hotels = dataContext.Set<Hotel>();
 
-        if ( await hotels.AnyAsync())
+       if ( await hotels.AnyAsync())
         {
             return;
         }
@@ -103,11 +105,29 @@ public static class SeedHelper
         dataContext.Set<Hotel>()
             .Add(new Hotel
             {
-                Name = "Heartbreak Hotel",
-                Address = "123 Poydras st",
-                CityId = cities[0].Id,
-                City = cities[0]
+                Name = "EnStay New Orleans I",
+                Address = "225 Baronne St, New Orleans, LA 70112",
+                CityId = cities[1].Id,
+                City = cities[1],
             });
+
+        dataContext.Set<Hotel>()
+           .Add(new Hotel
+           {
+               Name = "EnStay New Orleans II",
+               Address = "405 Esplanade Ave, New Orleans, LA 70116",
+               CityId = cities[1].Id,
+               City = cities[1]
+           });
+
+        dataContext.Set<Hotel>()
+           .Add(new Hotel
+           {
+               Name = "EnStay Baton Rouge",
+               Address = "200 Convention St, Baton Rouge, LA 70801",
+               CityId = cities[0].Id,
+               City = cities[0],
+           });
         //dataContext.SaveChanges();
 
         await dataContext.SaveChangesAsync();
