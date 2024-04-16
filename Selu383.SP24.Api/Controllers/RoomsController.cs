@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Selu383.SP24.Api.Data;
 using Selu383.SP24.Api.Features.Hotels;
-using Selu383.SP24.Api.Features.Rooms;
+
 using System.Linq;
 
 namespace Selu383.SP24.Api.Controllers
@@ -58,7 +58,7 @@ namespace Selu383.SP24.Api.Controllers
                 {
                     Id = x.Id,
                     Beds = x.Beds,
-                    Availablity = x.Availability,
+                    Availability = x.Availability,
                     HotelId = x.HotelId,
                     HotelName = x.Hotel.Name,
 

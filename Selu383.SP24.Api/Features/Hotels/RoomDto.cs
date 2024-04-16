@@ -8,6 +8,6 @@ namespace Selu383.SP24.Api.Features.Hotels
         public string? Beds { get; set; }
         public string? HotelName { get; set; }
         public bool IsAvailable { get; set; }
-        public object? Availablity { get; internal set; }
+        public object? Availability { get; internal set; }
     }
 }
