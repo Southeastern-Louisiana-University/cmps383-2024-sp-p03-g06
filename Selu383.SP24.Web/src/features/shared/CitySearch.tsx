@@ -3,15 +3,15 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useFetch } from "use-http";
 import './CitySearch.css';
 import { HotelDto } from "../../Dtos/HotelDto";
-import { Button, } from "react-bootstrap";
 import { AppBar, Toolbar } from "@mui/material";
 
 
 export default function CitySearch(){
 
-    const [getSearchTerm, setSearchTerm] = useState("");
+    const [newSearchTerm, setSearchTerm] = useState("");
     const [params] = useSearchParams();
     const searchTerm = params.get("searchTerm");
+
     console.log(searchTerm);
     const {
       data: hotels,
@@ -66,18 +66,18 @@ export default function CitySearch(){
               <div className="col-10" >
                 <br/>
                 <AppBar position="static" className="search-bar">
-              <Toolbar>
-                <label htmlFor="search">Search Destination</label>
-                <input id="search" value={getSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
-                <Link 
-                  onClick={(e) => (!getSearchTerm ? e.preventDefault() : null)}
-                  to={`/find-city?searchTerm=${encodeURIComponent(getSearchTerm)}&start=now`}
-                  aria-disabled={!searchTerm}
-                >
-                  Search
-                </Link>
-              </Toolbar>
-            </AppBar>
+                  <Toolbar>
+                    <label htmlFor="search">Search Destination</label>
+                    <input id="search" value={newSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
+                    <Link 
+                      onClick={(e) => (!newSearchTerm ? e.preventDefault() : null)}
+                      to={`/find-city?searchTerm=${encodeURIComponent(newSearchTerm)}&start=now`}
+                      aria-disabled={!searchTerm}
+                    >
+                      Search
+                    </Link>
+                  </Toolbar>
+                </AppBar>
                   {hotels?.map((hotel) => (
                     <>
                       <br />
