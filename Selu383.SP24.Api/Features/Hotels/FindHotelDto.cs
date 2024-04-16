@@ -3,6 +3,6 @@
     public class FindHotelDto
     {
 
-        public required string SearchTerm { get; set; }
+        public string? SearchTerm { get; set; }
     }
 }

@@ -94,15 +94,15 @@ public static class SeedHelper
     private static async Task AddHotels(DataContext dataContext)
     {
         var hotels = dataContext.Set<Hotel>();
-
+        var cities = await dataContext.Set<City>().ToListAsync();
        if ( await hotels.AnyAsync())
         {
             return;
         }
 
-        var cities = await dataContext.Set<City>().ToListAsync();
+        
 
-        dataContext.Set<Hotel>()
+        /*dataContext.Set<Hotel>()
             .Add(new Hotel
             {
                 Name = "EnStay New Orleans I",
@@ -127,7 +127,7 @@ public static class SeedHelper
                Address = "200 Convention St, Baton Rouge, LA 70801",
                CityId = cities[0].Id,
                City = cities[0],
-           });
+           });*/
         //dataContext.SaveChanges();
 
         await dataContext.SaveChangesAsync();
