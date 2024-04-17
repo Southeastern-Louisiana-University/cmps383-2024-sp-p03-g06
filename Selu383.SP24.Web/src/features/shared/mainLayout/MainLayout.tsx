@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
+import { AppBar, Box, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import './MainLayout.css';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -24,14 +24,17 @@ export default function MainLayout() {
               >
                 <MenuIcon />
               </IconButton>
+              
               <Typography 
                 variant="h4" 
                 component="div" 
-                sx={{ flexGrow: 1 }}
-                
-              >
-                EnStay
+                sx={{ flexGrow: 1 }} 
+                >
+                <Link to={`/`}>
+                  EnStay
+                </Link>
               </Typography>
+              
               <Link 
                 
                 onClick={() => navigate("/login")} to={""}              >
