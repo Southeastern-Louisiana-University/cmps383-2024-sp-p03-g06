@@ -3,15 +3,15 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useFetch } from "use-http";
 import './CitySearch.css';
 import { HotelDto } from "../../Dtos/HotelDto";
-import { Button, } from "react-bootstrap";
 import { AppBar, Toolbar } from "@mui/material";
 
 
 export default function CitySearch(){
 
-    const [getSearchTerm, setSearchTerm] = useState("");
+    const [newSearchTerm, setSearchTerm] = useState("");
     const [params] = useSearchParams();
     const searchTerm = params.get("searchTerm");
+
     console.log(searchTerm);
     const {
       data: hotels,
@@ -66,39 +66,38 @@ export default function CitySearch(){
               <div className="col-10" >
                 <br/>
                 <AppBar position="static" className="search-bar">
-              <Toolbar>
-                <label htmlFor="search">Search Destination</label>
-                <input id="search" value={getSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
-                <Link 
-                  onClick={(e) => (!getSearchTerm ? e.preventDefault() : null)}
-                  to={`/find-city?searchTerm=${encodeURIComponent(getSearchTerm)}&start=now`}
-                  aria-disabled={!searchTerm}
-                >
-                  Search
-                </Link>
-              </Toolbar>
-            </AppBar>
+                  <Toolbar>
+                    <label htmlFor="search">Search Destination</label>
+                    <input id="search" value={newSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
+                    <Link 
+                      onClick={(e) => (!newSearchTerm ? e.preventDefault() : null)}
+                      to={`/find-city?searchTerm=${encodeURIComponent(newSearchTerm)}&start=now`}
+                      aria-disabled={!searchTerm}
+                    >
+                      Search
+                    </Link>
+                  </Toolbar>
+                </AppBar>
                   {hotels?.map((hotel) => (
                     <>
                       <br />
                       <div className="container">
-                        <div className="row" style={{ backgroundColor: 'rgba(255,255,255,.95)' }}>
-                          <div className="col-1"></div>
-                          <div className="col-8">
-                            <div>
-                              <br />
-                              <h2>{hotel.name}</h2>
-                              <p>{hotel.address}</p>
+                        <Link to={`/hotel-details/${hotel.id}`}>
+                          <div className="row" style={{ backgroundColor: 'rgba(255,255,255,.95)' }}>
+                            <div className="col-1"></div>
+                            <div className="col-8">
+                              <div>
+                                <br />
+                                <h2>{hotel.name}</h2>
+                                <p>{hotel.address}</p>
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-2">
-                            <br />
-                            <Link to={`/hotel-details/${hotel.id}`}>
-                                <Button variant="secondary background-1">Book a Reservation</Button>{" "}
-                            </Link>
-                          </div>
-                          <div className="col-1"></div>
-                        </div>
+                            <div className="col-2">
+                              <br />
+                            </div>
+                            <div className="col-1"></div>
+                          </div> 
+                        </Link>
                       </div>
                       <br />
                     </>

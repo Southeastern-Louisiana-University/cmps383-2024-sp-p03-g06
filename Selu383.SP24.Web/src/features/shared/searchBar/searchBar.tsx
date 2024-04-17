@@ -1,7 +1,3 @@
-import { Divider, Box } from "@mantine/core";
-import { AppBar, Toolbar } from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 /* export default function(){
 
