@@ -168,6 +168,7 @@ public class HotelsController : ControllerBase
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
+                CityId = x.CityId,
             });
 
     }
