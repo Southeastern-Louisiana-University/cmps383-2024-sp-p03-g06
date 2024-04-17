@@ -15,10 +15,10 @@ public static class SeedHelper
 
         await AddRoles(serviceProvider);
         await AddUsers(serviceProvider);
-        await AddCities(dataContext);
-        await AddHotels(dataContext);
-        await AddRoomTypes(dataContext);
-        await AddRooms(dataContext);
+        //await AddCities(dataContext);
+        //await AddHotels(dataContext);
+        //await AddRoomTypes(dataContext);
+        //await AddRooms(dataContext);
 
         //dataContext.SaveChanges();
         
