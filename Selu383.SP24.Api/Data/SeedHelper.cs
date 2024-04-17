@@ -18,7 +18,7 @@ public static class SeedHelper
         await AddCities(dataContext);
         await AddHotels(dataContext);
 
-        //dataContext.SaveChanges();
+        dataContext.SaveChanges();
         
     }
 
@@ -103,7 +103,7 @@ public static class SeedHelper
 
         
 
-        /*dataContext.Set<Hotel>()
+        dataContext.Set<Hotel>()
             .Add(new Hotel
             {
                 Name = "EnStay New Orleans I",
@@ -128,8 +128,8 @@ public static class SeedHelper
                Address = "200 Convention St, Baton Rouge, LA 70801",
                CityId = cities[0].Id,
                City = cities[0],
-           });*/
-        //dataContext.SaveChanges();
+           });
+        dataContext.SaveChanges();
 
 
 
