@@ -103,7 +103,7 @@ public static class SeedHelper
 
         
 
-       /* dataContext.Set<Hotel>()
+        dataContext.Set<Hotel>()
             .Add(new Hotel
             {
                 Name = "EnStay New Orleans I",
