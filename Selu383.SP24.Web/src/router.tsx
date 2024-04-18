@@ -5,6 +5,7 @@ import Reservations from "./routes/Reservations/reservations";
 import CitySearch from "./features/shared/CitySearch";
 import HomePage from "./routes/HomePage/HomePage";
 import HotelDetail from "./routes/HotelDetails/HotelDetail";
+import DatePicker from "./routes/HotelDetails/DatePicker";
 
 const router = createBrowserRouter([
   {
@@ -14,13 +15,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        children:[
-          
-        ],
+        children: [],
       },
       {
         path: "/find-city",
-        element: <CitySearch />
+        element: <CitySearch />,
       },
       {
         path: "/reservations",
@@ -28,8 +27,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path:"/hotel-details/:id",
-        element: <HotelDetail/>
+        path: "/hotel-details/:id",
+        element: <HotelDetail />,
       },
     ],
   },
@@ -37,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LogIn />,
+  },
+  {
+    path: "/DatePickChecker",
+    element: <DatePicker />,
   },
 ]);
 export default router;
