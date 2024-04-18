@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LogIn } from "./routes/Login/LogIn";
+
 import MainLayout from "./features/shared/mainLayout/MainLayout";
 import Reservations from "./routes/Reservations/reservations";
 import CitySearch from "./features/shared/CitySearch";
 import HomePage from "./routes/HomePage/HomePage";
 import HotelDetail from "./routes/HotelDetails/HotelDetail";
+import LogIn from "./routes/Login/LogIn";
 
 const router = createBrowserRouter([
   {
