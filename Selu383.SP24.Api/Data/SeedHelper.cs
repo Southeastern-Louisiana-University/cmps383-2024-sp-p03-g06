@@ -17,6 +17,8 @@ public static class SeedHelper
         await AddUsers(serviceProvider);
         await AddCities(dataContext);
         await AddHotels(dataContext);
+        await AddRooms(dataContext);
+        await AddRoomTypes(dataContext);
 
         //dataContext.SaveChanges();
         
@@ -101,7 +103,7 @@ public static class SeedHelper
             return;
         }
 
-        var hotelsToSeed = new List<Hotel>()
+        /*var hotelsToSeed = new List<Hotel>()
         {
            new()
            {
@@ -129,9 +131,9 @@ public static class SeedHelper
                //CityId = dataContext.Set<City>().Find(1).Id,
                //City = dataContext.Set<City>().Find(1),
             }
-       };
+       };*/
 
-        dataContext.Set<Hotel>().AddRange(hotelsToSeed);
+        //dataContext.Set<Hotel>().AddRange(hotelsToSeed);
 
        /*dataContext.Set<Hotel>()
             .Add(new Hotel
@@ -162,6 +164,48 @@ public static class SeedHelper
         dataContext.SaveChanges();
 
         //await dataContext.SaveChangesAsync();
+    }
+
+    private static async Task AddRoomTypes(DataContext dataContext)
+    {
+        var roomTypes = dataContext.Set<RoomType>();
+
+        if (await roomTypes.AnyAsync())
+        {
+            return;
+        }
+
+        /*dataContext.Set<RoomType>().Add(new RoomType
+        {
+            Name = "king",
+            NumberOfBeds = 1,
+            HotelId = 11,
+        });*/
+
+
+
+        await dataContext.SaveChangesAsync();
+    }
+
+    private static async Task AddRooms(DataContext dataContext)
+    {
+        var rooms = dataContext.Set<Room>();
+
+        /*if (await rooms.AnyAsync())
+        {
+            return;
+        }
+
+        dataContext.Set<Room>().Add(new Room
+        {
+            Availability = true,
+            Beds = "1",
+            HotelId = 11,
+        });*/
+
+
+
+        await dataContext.SaveChangesAsync();
     }
 
 
