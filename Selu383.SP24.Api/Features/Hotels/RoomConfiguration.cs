@@ -17,7 +17,11 @@ namespace Selu383.SP24.Api.Features.Hotels
 
                 builder.HasKey(x => x.Id);
 
-                builder.HasOne<Hotel>(x => x.Hotel)
+                builder.HasOne(x => x.RoomType)
+                    .WithMany(x => x.Rooms)
+                    .HasForeignKey(x => x.RoomTypeId);
+
+                /*builder.HasOne<Hotel>(x => x.Hotel)
                     .WithMany(h => h.Rooms)
                     .HasForeignKey(x => x.HotelId)
                     .IsRequired();
@@ -26,7 +30,7 @@ namespace Selu383.SP24.Api.Features.Hotels
                     .HasOne<RoomType>(x => x.RoomType)
                     .WithMany()
                     .HasForeignKey(x => x.RoomTypeId)
-                    .IsRequired(false);
+                    .IsRequired(false);*/
             }
     }
 }

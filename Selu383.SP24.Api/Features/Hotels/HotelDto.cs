@@ -13,4 +13,6 @@ public class HotelDto
     public int CityId { get; set; }
 
     public int ManagerId { get; set; }
+
+    public List<RoomType>? Rooms { get; set; }
 }
