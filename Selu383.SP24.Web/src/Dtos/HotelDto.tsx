@@ -1,4 +1,5 @@
 import { CityDto } from "./CityDto";
+import { RoomTypeDto } from "./RoomDto";
 
 
 export interface HotelDto{
@@ -8,4 +9,5 @@ export interface HotelDto{
     managerId: number | null;
     cityId: number;
     city: CityDto;
+    rooms: Array<RoomTypeDto>
 }
