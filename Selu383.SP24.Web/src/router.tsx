@@ -6,6 +6,7 @@ import CitySearch from "./features/shared/CitySearch";
 import HomePage from "./routes/HomePage/HomePage";
 import HotelDetail from "./routes/HotelDetails/HotelDetail";
 import LogIn from "./routes/Login/LogIn";
+import DatePicker from "./routes/HotelDetails/DatePicker";
 
 const router = createBrowserRouter([
   {
@@ -39,5 +40,9 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LogIn />,
   },
+  {
+    path: "/DatePickChecker",
+    element: <DatePicker/>
+  }
 ]);
 export default router;

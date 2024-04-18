@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { HotelDto } from "../../Dtos/HotelDto";
 import { Card, } from "react-bootstrap";
 import { Title } from "@mantine/core";
+import DatePickerCalendar from "./DatePicker";
 
 export default function HotelDetail() {
     const {id} = useParams();
@@ -18,12 +19,15 @@ export default function HotelDetail() {
             });
     }, [id]);
 
+    
+
     return(
         <>
             {hotel && (
                 <div>
                     <div>
                         <Title order={3}>{hotel.name}</Title>
+                        <DatePickerCalendar/>
                     </div>
                     <div>
                         <Card></Card>
