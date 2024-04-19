@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {RoomDto} from '../HotelDetails/RoomDto'
 
+
 export default function BookingBR() {
     const [checkIn, setCheckIn] = useState<Date | null>(null);
     const [checkOut, setCheckOut] = useState<Date | null>(null);
@@ -11,7 +12,7 @@ export default function BookingBR() {
     const [selectedRooms, setSelectedRooms] = useState<{ room: RoomDto, quantity: number }[]>([]);
     const [cartOpen, setCartOpen] = useState(false);
 
-    const hotelId = 3;
+    const hotelId = 12;
 
     const handleCheckInChange = (date: Date | null) => {
         setCheckIn(date);
@@ -51,24 +52,8 @@ export default function BookingBR() {
         setSelectedRooms(updatedSelectedRooms);
     };
 
-    const handleRemoveFromCart = (index: number) => {
-        const updatedSelectedRooms = [...selectedRooms];
-        updatedSelectedRooms.splice(index, 1);
-        setSelectedRooms(updatedSelectedRooms);
-    };
 
-    const getRoomImage = (room: RoomDto) => {
-        if (room.beds === 'Twin Bed') {
-            return twins;
-        } else if (room.beds === 'Queen Bed') {
-            return queen;
-        } else if (room.beds === 'King Bed') {
-            return king;
-        } else {
-            // Default image if the bed type is not recognized
-            return null;
-        }
-    };
+
 
     return (
         <div>
@@ -93,7 +78,7 @@ export default function BookingBR() {
                                             Type: {selectedRoom.room.beds}<br />
                                             Available: {selectedRoom.room.isAvailable ? 'Yes' : 'No'}
                                         </Card.Text>
-                                        <Button variant="danger" size="sm" onClick={() => handleRemoveFromCart(index)}>Remove</Button>
+
                                     </Card.Body>
                                 </Card>
                             ))}
@@ -141,7 +126,7 @@ export default function BookingBR() {
                                 <Col key={room.id}>
                                     <div className="card-wrapper mb-3">
                                         <Card>
-                                            <Card.Img variant="top" src={getRoomImage(room) ?? ''} style={{ width: '100%', height: '150px' }} />
+                                            <Card.Img variant="top" src={"HotelRoom"} style={{ width: '100%', height: '150px' }} />
                                             <Card.Body>
                                                 <Card.Title>{room.beds}</Card.Title>
                                                 <Card.Text>
