@@ -4,8 +4,6 @@ import { HotelDto } from "../../Dtos/HotelDto";
 import { RoomDto } from "../../Dtos/RoomDto";
 import { Card } from "react-bootstrap";
 import { Title } from "@mantine/core";
-import Box from "@mui/material/Box";
-import { colors } from "@mui/material";
 
 export default function HotelDetail() {
   const { id } = useParams();
@@ -55,6 +53,7 @@ export default function HotelDetail() {
           <div>
             {rooms.map((room) => (
               <Card>
+                <Card.Img variant="top" src="HotelRoomImage.jpg" />
                 <Card.Body>
                   <Card.Title>
                     <h2>Room # {room.id}</h2>
