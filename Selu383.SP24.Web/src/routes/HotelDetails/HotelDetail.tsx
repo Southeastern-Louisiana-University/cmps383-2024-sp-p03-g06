@@ -2,33 +2,31 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HotelDto } from "../../Dtos/HotelDto";
 import { RoomDto } from "../../Dtos/RoomDto";
-import { Card, } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Title } from "@mantine/core";
+import Box from "@mui/material/Box";
+import { colors } from "@mui/material";
 
 export default function HotelDetail() {
-    const {id} = useParams();
-    const [hotel, setHotel] = useState<HotelDto>();
-    const [rooms, setRooms] = useState<RoomDto[]>([]);
+  const { id } = useParams();
+  const [hotel, setHotel] = useState<HotelDto>();
+  const [rooms, setRooms] = useState<RoomDto[]>([]);
 
-    useEffect(() => {
-        const hotelDetails = async() =>{
+  useEffect(() => {
+    const hotelDetails = async () => {
+      const hotelResponse = await fetch(`/api/hotels/${id}`);
 
-        const hotelResponse = await fetch(`/api/hotels/${id}`);
+      const HotelData: HotelDto = await hotelResponse.json();
 
-        const HotelData: HotelDto = await hotelResponse.json();
+      setHotel(HotelData);
+      const roomResponse = await fetch(`/api/rooms/byhotel/${id}`);
+      const roomData: RoomDto[] = await roomResponse.json();
+      setRooms(roomData);
+    };
 
-        setHotel(HotelData);
-        const roomResponse = await fetch(`/api/rooms/byhotel/${id}`);
-        const roomData : RoomDto[] = await roomResponse.json(); 
-        setRooms(roomData);
-    
+    hotelDetails();
 
-    }
-
-    hotelDetails(); 
-
-
-      /*  fetch(`/api/hotels/${id}`, {
+    /*  fetch(`/api/hotels/${id}`, {
             method: "get",
         })
             .then<HotelDto>((r) => r.json())
@@ -43,24 +41,32 @@ export default function HotelDetail() {
             .then((j) => {
                 setRooms(j);
             });  */
-    }, [id]);
+  }, [id]);
 
-    return(
-        <>
-            {hotel && (
-                <div>
-                    <div>
-                        <Title order={3}>{hotel.name}</Title>
-                    </div>
-                    <div>
-                    {rooms.map((room) => (<Card><p>{room.id}</p> <p>{room.beds}</p> </Card>))}
-                    <p>
-                        
-                    </p>
-
-                    </div>
-                </div>
-            )}
-        </>
-    )
+  return (
+    <>
+      {hotel && (
+        <div>
+          <div>
+            <Title order={3}>
+              <h1 style={{ color: "black" }}>{hotel.name}</h1>
+            </Title>
+          </div>
+          <div>
+            {rooms.map((room) => (
+              <Card>
+                <Card.Body>
+                  <Card.Title>
+                    <h2>Room # {room.id}</h2>
+                  </Card.Title>
+                  <Card.Subtitle>{room.beds}</Card.Subtitle>
+                </Card.Body>
+              </Card>
+            ))}
+            <p></p>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
