@@ -37,9 +37,9 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LogIn />,
   },
-  {
-    path: "/DatePickChecker",
-    element: <DatePicker />,
-  },
+  // {
+  //   path: "/DatePickChecker",
+  //   element: <DatePicker />,
+  // },
 ]);
 export default router;
