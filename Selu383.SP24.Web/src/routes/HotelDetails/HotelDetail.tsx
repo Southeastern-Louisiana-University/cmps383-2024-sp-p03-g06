@@ -4,6 +4,8 @@ import { HotelDto } from "../../Dtos/HotelDto";
 import { RoomDto } from "../../Dtos/RoomDto";
 import { Card } from "react-bootstrap";
 import { Title } from "@mantine/core";
+import "./HotelDetail.css";
+import HotelRoomImage from "./HotelRoomImage.jpg";
 
 export default function HotelDetail() {
   const { id } = useParams();
@@ -45,16 +47,18 @@ export default function HotelDetail() {
     <>
       {hotel && (
         <div>
-          <div>
-            <Title order={3}>
-              <h1 style={{ color: "black" }}>{hotel.name}</h1>
-            </Title>
-          </div>
-          <div>
+          <Title order={3}>
+            <h1 style={{ color: "black" }}>{hotel.name}</h1>
+          </Title>
+          <div className="room-container">
             {rooms.map((room) => (
-              <Card>
-                <Card.Img variant="top" src="HotelRoomImage.jpg" />
-                <Card.Body>
+              <Card className="room-card">
+                <Card.Img
+                  variant="top"
+                  src={HotelRoomImage}
+                  // style={{ maxWidth: "100%", height: "auto" }}
+                />
+                <Card.Body className="card-content">
                   <Card.Title>
                     <h2>Room # {room.id}</h2>
                   </Card.Title>
@@ -62,7 +66,6 @@ export default function HotelDetail() {
                 </Card.Body>
               </Card>
             ))}
-            <p></p>
           </div>
         </div>
       )}
