@@ -1,34 +1,32 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useFetch } from "use-http";
-import './CitySearch.css';
+import "./CitySearch.css";
 import { HotelDto } from "../../Dtos/HotelDto";
 import { AppBar, Toolbar } from "@mui/material";
 
+export default function CitySearch() {
+  const [newSearchTerm, setSearchTerm] = useState("");
+  const [params] = useSearchParams();
+  const searchTerm = params.get("searchTerm");
 
-export default function CitySearch(){
-
-    const [newSearchTerm, setSearchTerm] = useState("");
-    const [params] = useSearchParams();
-    const searchTerm = params.get("searchTerm");
-
-    console.log(searchTerm);
-    const {
-      data: hotels,
-      loading,
-      error,
-    } = useFetch<HotelDto[]>(
-      "/api/hotels/find",
-      {
-        method: "post",
-        body: {
-          searchTerm: searchTerm,
-        },
+  console.log(searchTerm);
+  const {
+    data: hotels,
+    loading,
+    error,
+  } = useFetch<HotelDto[]>(
+    "/api/hotels/find",
+    {
+      method: "post",
+      body: {
+        searchTerm: searchTerm,
       },
-      [searchTerm]
-    );   
-    
-   /*  const {
+    },
+    [searchTerm]
+  );
+
+  /*  const {
       data: cities
     } = useFetch<CityDto[]>(
       "api/cities/find",
@@ -40,33 +38,31 @@ export default function CitySearch(){
       },
       [searchTerm]
     ); */
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (error) {
-      return (
-        <div>
-          Error... <button type="button"> try again</button>
-        </div>
-      );
-    }
 
-    
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-   // const [NewSearchTerm, setSearchTerm] = useState("");
-
+  if (error) {
     return (
-      <>
-        <div>
-          <div className="container">
-            <div className="row" >
-              <div className="col-1"></div>
-              <div className="col-10" >
-                <br/>
-                <AppBar position="static" className="search-bar">
-                  <Toolbar>
+      <div>
+        Error... <button type="button"> try again</button>
+      </div>
+    );
+  }
+
+  // const [NewSearchTerm, setSearchTerm] = useState("");
+
+  return (
+    <>
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-1"></div>
+            <div className="col-10">
+              <br />
+              <AppBar position="static" className="search-bar">
+                {/* <Toolbar>
                     <label htmlFor="search">Search Destination</label>
                     <input id="search" value={newSearchTerm} onChange={(e) => setSearchTerm(e.target.value ?? "")}></input>
                     <Link 
@@ -76,38 +72,41 @@ export default function CitySearch(){
                     >
                       Search
                     </Link>
-                  </Toolbar>
-                </AppBar>
-                  {hotels?.map((hotel) => (
-                    <>
-                      <br />
-                      <div className="container">
-                        <Link to={`/hotel-details/${hotel.id}`}>
-                          <div className="row" style={{ backgroundColor: 'rgba(255,255,255,.95)' }}>
-                            <div className="col-1"></div>
-                            <div className="col-8">
-                              <div>
-                                <br />
-                                <h2>{hotel.name}</h2>
-                                <p>{hotel.address}</p>
-                              </div>
-                            </div>
-                            <div className="col-2">
-                              <br />
-                            </div>
-                            <div className="col-1"></div>
-                          </div> 
-                        </Link>
+                  </Toolbar> */}
+              </AppBar>
+              {hotels?.map((hotel) => (
+                <>
+                  <br />
+                  <div className="container">
+                    <Link to={`/hotel-details/${hotel.id}`}>
+                      <div
+                        className="row"
+                        style={{ backgroundColor: "rgba(255,255,255,.95)" }}
+                      >
+                        <div className="col-1"></div>
+                        <div className="col-8">
+                          <div>
+                            <br />
+                            <h2>{hotel.name}</h2>
+                            <p>{hotel.address}</p>
+                          </div>
+                        </div>
+                        <div className="col-2">
+                          <br />
+                        </div>
+                        <div className="col-1"></div>
                       </div>
-                      <br />
-                    </>
-                      ))}
+                    </Link>
                   </div>
-                  <div className="col-1"></div>
+                  <br />
+                </>
+              ))}
             </div>
+            <div className="col-1"></div>
           </div>
         </div>
-        {/* {cities ? (
+      </div>
+      {/* {cities ? (
           <>
             <Container>
               <Flex justify={"center"} align={"start"}>
@@ -140,6 +139,6 @@ export default function CitySearch(){
             <Loader />
           </>
         )} */}
-      </>
-    );
+    </>
+  );
 }
