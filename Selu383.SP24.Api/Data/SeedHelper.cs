@@ -114,24 +114,24 @@ public static class SeedHelper
         }
 
 
-           new()
-           {
-               Name = "EnStay New Orleans II",
-               Address = "405 Esplanade Ave, New Orleans, LA 70116",
-               CityId = cities[1].Id,
-               //CityId = dataContext.Set<City>().Find(2).Id,
-               //City = dataContext.Set<City>().Find(2),
-           },
+       //    new()
+       //    {
+       //        Name = "EnStay New Orleans II",
+       //        Address = "405 Esplanade Ave, New Orleans, LA 70116",
+       //        CityId = cities[1].Id,
+       //        //CityId = dataContext.Set<City>().Find(2).Id,
+       //        //City = dataContext.Set<City>().Find(2),
+       //    },
 
-            new()
-            {
-               Name = "EnStay Baton Rouge",
-               Address = "200 Convention St, Baton Rouge, LA 70801",
-               CityId = cities[0].Id,
-               //CityId = dataContext.Set<City>().Find(1).Id,
-               //City = dataContext.Set<City>().Find(1),
-            }
-       };*/
+       //     new()
+       //     {
+       //        Name = "EnStay Baton Rouge",
+       //        Address = "200 Convention St, Baton Rouge, LA 70801",
+       //        CityId = cities[0].Id,
+       //        //CityId = dataContext.Set<City>().Find(1).Id,
+       //        //City = dataContext.Set<City>().Find(1),
+       //     }
+       //};
 
         //dataContext.Set<Hotel>().AddRange(hotelsToSeed);
 

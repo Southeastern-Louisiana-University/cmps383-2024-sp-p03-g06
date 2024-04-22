@@ -34,13 +34,13 @@ namespace Selu383.SP24.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomType", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RoomType_Hotel_HotelId",
-                        column: x => x.HotelId,
-                        principalTable: "Hotel",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    //table.PrimaryKey("PK_RoomType", x => x.Id);
+                    //table.ForeignKey(
+                    //    name: "FK_RoomType_Hotel_HotelId",
+                    //    column: x => x.HotelId,
+                    //    principalTable: "Hotel",
+                    //    principalColumn: "Id",
+                    //    onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
