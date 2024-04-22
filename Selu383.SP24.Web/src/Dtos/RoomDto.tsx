@@ -1,4 +1,5 @@
 
+
 export interface RoomDto{
     id: number;
     hotelId: number;
@@ -13,3 +14,4 @@ export interface RoomTypeDto{
     numberOfBeds: number;
     rooms: Array<RoomDto>;
 }
+

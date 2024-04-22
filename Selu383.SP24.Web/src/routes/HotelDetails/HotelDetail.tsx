@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HotelDto } from "../../Dtos/HotelDto";
-import { Button, Card, } from "react-bootstrap";
+import { RoomDto } from "../../Dtos/RoomDto";
+import { Card, } from "react-bootstrap";
+
 import { Title } from "@mantine/core";
 import { RoomDto } from "../../Dtos/RoomDto";
 import HotelRoomImage from "./HotelRoomImage.jpg";
@@ -10,6 +12,7 @@ export default function HotelDetail() {
     const { id } = useParams();
     const [hotel, setHotel] = useState<HotelDto>();
     const [rooms, setRooms] = useState<RoomDto[]>([]);
+
   
     useEffect(() => {
       const hotelDetails = async () => {
@@ -33,6 +36,7 @@ export default function HotelDetail() {
               .then((j) => {
                   setRooms(j);
               });  */
+
     }, [id]);
 
 
