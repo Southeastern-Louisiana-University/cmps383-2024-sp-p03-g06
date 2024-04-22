@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HotelDto } from "../../Dtos/HotelDto";
 import { RoomDto } from "../../Dtos/RoomDto";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Title } from "@mantine/core";
 import "./HotelDetail.css";
 import HotelRoomImage from "./HotelRoomImage.jpg";
@@ -64,6 +64,14 @@ export default function HotelDetail() {
                   </Card.Title>
                   <Card.Subtitle className="text-contrast">
                     {room.beds}
+                  </Card.Subtitle>
+                  <Card.Subtitle>
+                    <Button
+                      as="input"
+                      type="submit"
+                      value="Reserve"
+                      className="bigger-button"
+                    />{" "}
                   </Card.Subtitle>
                 </Card.Body>
               </Card>
