@@ -11,7 +11,8 @@ namespace Selu383.SP24.Api.Features.Hotels
 
             builder.HasOne(x => x.Hotel)
                 .WithMany(x => x.Rooms)
-                .HasForeignKey(x => x.HotelId);
+                .HasForeignKey(x => x.HotelId)
+                .IsRequired();
 
         }
     }
