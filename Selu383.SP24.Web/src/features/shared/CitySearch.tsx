@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useFetch } from "use-http";
 import "./CitySearch.css";
 import { HotelDto } from "../../Dtos/HotelDto";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar } from "@mui/material";
 
 export default function CitySearch() {
-  const [newSearchTerm, setSearchTerm] = useState("");
+  //const [newSearchTerm, setSearchTerm] = useState("");
   const [params] = useSearchParams();
   const searchTerm = params.get("searchTerm");
 
