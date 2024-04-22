@@ -85,6 +85,11 @@ public static class SeedHelper
 
         dataContext.Set<City>().Add(new City
         {
+            Location = "Baton Rouge"
+        });
+
+        dataContext.Set<City>().Add(new City
+        {
             Location = "New Orleans"
         });
 
@@ -108,16 +113,6 @@ public static class SeedHelper
             return;
         }
 
-        /*var hotelsToSeed = new List<Hotel>()
-        {
-           new()
-           {
-                Name = "EnStay New Orleans I",
-                Address = "225 Baronne St, New Orleans, LA 70112",
-                //CityId = cities[1].Id,
-                CityId = dataContext.Set<City>().Find(2).Id,
-                //City = dataContext.Set<City>().Find(2)
-           },
 
            new()
            {
@@ -180,41 +175,52 @@ public static class SeedHelper
             return;
         }
 
-        /*dataContext.Set<RoomType>().Add(new RoomType
+        var predefinedRooms = new List<RoomType>
         {
-            Name = "king",
-            NumberOfBeds = 1,
-            HotelId = 11,
-        });*/
+            new RoomType { Name = "Twin Bed", NumberOfBeds = 2, HotelId = 11},
+            new RoomType { Name = "Twin Bed", NumberOfBeds = 2, HotelId = 12},
+            new RoomType { Name = "Twin Bed", NumberOfBeds = 1, HotelId = 13},
+            new RoomType { Name = "Queen Bed", NumberOfBeds = 2, HotelId = 11},
+            new RoomType { Name = "Queen Bed", NumberOfBeds = 2, HotelId = 12},
+            new RoomType { Name = "Queen Bed", NumberOfBeds = 1, HotelId = 13},
+            new RoomType { Name = "King Bed", NumberOfBeds = 2, HotelId = 11},
+            new RoomType { Name = "King Bed", NumberOfBeds = 2, HotelId = 12},
+            new RoomType { Name = "King Bed", NumberOfBeds = 1, HotelId = 13},
+        };
 
-
-
+        await roomTypes.AddRangeAsync(predefinedRooms);
         await dataContext.SaveChangesAsync();
     }
 
     private static async Task AddRooms(DataContext dataContext)
     {
         var rooms = dataContext.Set<Room>();
+        var hotels = dataContext.Set<Hotel>();
+        var roomTypes = await dataContext.Set<RoomType>().ToListAsync();
 
-        /*if (await rooms.AnyAsync())
+        if (await rooms.AnyAsync())
         {
             return;
         }
 
-        dataContext.Set<Room>().Add(new Room
+        foreach (var roomType in roomTypes)
         {
-            Availability = true,
-            Beds = "1",
-            HotelId = 11,
-        });*/
-
-
-
+            foreach (var hotel in hotels)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    dataContext.Set<Room>().Add(new Room
+                    {
+                        Beds = roomType.Name,
+                        Availability = true,
+                        RoomType = roomType,
+                        HotelId = hotel.Id
+                    });
+                }
+            }
+        }
         await dataContext.SaveChangesAsync();
     }
-
-
-
 }
 
 
