@@ -1,13 +1,17 @@
 
 
-
-
-export interface RoomDto
-{
+export interface RoomDto{
     id: number;
+    hotelId: number;
     beds: string;
-    hotelName: string;
-    //availabilty: number | null;
+    Availability: boolean;
     roomTypeId: number;
-    roomName: string;
 }
+
+export interface RoomTypeDto{
+    id: number;
+    name: string;
+    numberOfBeds: number;
+    rooms: Array<RoomDto>;
+}
+

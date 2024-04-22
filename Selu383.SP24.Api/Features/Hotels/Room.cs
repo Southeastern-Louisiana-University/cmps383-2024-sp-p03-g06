@@ -9,6 +9,6 @@
         public string? Beds {  get; set; }
         public virtual Hotel? Hotel { get; set; }
         public virtual RoomType? RoomType { get; set; }
-        public virtual ICollection<Reservation>? Reservations { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
     }
 }
