@@ -15,6 +15,6 @@ public class Hotel
     public int? ManagerId { get; set; }
     public virtual User? Manager { get; set; }
     public virtual List<RoomType> Rooms { get; set; } = new List<RoomType>();
-    public virtual ICollection<Reservation>? Reservations { get; set; }
+    public virtual List<Reservation> Reservations { get; set; } = new List<Reservation>();
 }
 

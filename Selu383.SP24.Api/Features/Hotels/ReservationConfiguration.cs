@@ -8,19 +8,16 @@ namespace Selu383.SP24.Api.Features.Hotels
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
             builder
-                .HasOne(r => r.Room)
-                .WithMany(h => h.Reservations)
-                .HasForeignKey(r => r.RoomId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(x => x.Room)
+                .WithMany(x => x.Reservations)
+                .HasForeignKey(x => x.RoomId)
+                .IsRequired();
 
             builder
                 .HasOne(x => x.User)
-                .WithMany(r => r.Reservations)
+                .WithMany(x => x.Reservations)
                 .HasForeignKey(x => x.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
-
+                .IsRequired();
         }
     }
 }
