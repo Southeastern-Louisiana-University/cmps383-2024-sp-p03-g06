@@ -56,13 +56,15 @@ export default function HotelDetail() {
                 <Card.Img
                   variant="top"
                   src={HotelRoomImage}
-                  // style={{ maxWidth: "100%", height: "auto" }}
+                  style={{ maxWidth: "100%", height: "auto" }}
                 />
                 <Card.Body className="card-content">
                   <Card.Title>
-                    <h2>Room # {room.id}</h2>
+                    <h2 className="text-contrast">Room # {room.id}</h2>
                   </Card.Title>
-                  <Card.Subtitle>{room.beds}</Card.Subtitle>
+                  <Card.Subtitle className="text-contrast">
+                    {room.beds}
+                  </Card.Subtitle>
                 </Card.Body>
               </Card>
             ))}
