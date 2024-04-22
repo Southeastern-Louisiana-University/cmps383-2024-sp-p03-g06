@@ -121,9 +121,47 @@ a {
 }
 
 .search-container {
-  padding-top: 10px; /* Adjust according to the height of your navigation bar */
+  padding: 20px;
+  text-align: center;
 }
 
 .search-bar {
-  background-color: #f0f0f0; /* Example background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar label {
+  margin-right: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.search-bar .search-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar .search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-bar .search-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
