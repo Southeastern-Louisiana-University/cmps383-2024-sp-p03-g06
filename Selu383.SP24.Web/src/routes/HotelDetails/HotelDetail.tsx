@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HotelDto } from "../../Dtos/HotelDto";
 import { RoomDto } from "../../Dtos/RoomDto";
-import { Card, } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 import { Title } from "@mantine/core";
-import { RoomDto } from "../../Dtos/RoomDto";
 import HotelRoomImage from "./HotelRoomImage.jpg";
 
 export default function HotelDetail() {
@@ -24,7 +23,9 @@ export default function HotelDetail() {
         const roomResponse = await fetch(`/api/rooms/byhotel/${id}`);
         const roomData: RoomDto[] = await roomResponse.json();
         setRooms(roomData);
+
       };
+
   
       hotelDetails();
   
@@ -38,6 +39,7 @@ export default function HotelDetail() {
               });  */
 
     }, [id]);
+
 
 
 
