@@ -20,7 +20,6 @@ const router = createBrowserRouter([
         path: "/find-city",
         element: <CitySearch />,
       },
-
       {
         path: "/hotel-details/:id",
         element: <HotelDetail />,
