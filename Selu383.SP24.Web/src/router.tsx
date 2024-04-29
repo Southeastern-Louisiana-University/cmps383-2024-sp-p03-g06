@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "./features/shared/mainLayout/MainLayout";
-import Reservations from "./routes/Reservations/reservations";
 import CitySearch from "./features/shared/CitySearch";
 import HomePage from "./routes/HomePage/HomePage";
 import HotelDetail from "./routes/HotelDetails/HotelDetail";
@@ -15,22 +14,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        children:[
-          
-        ],
+        children: [],
       },
       {
         path: "/find-city",
-        element: <CitySearch />
+        element: <CitySearch />,
       },
       {
-        path: "/reservations",
-        element: <Reservations />,
-      },
-
-      {
-        path:"/hotel-details/:id",
-        element: <HotelDetail/>
+        path: "/hotel-details/:id",
+        element: <HotelDetail />,
       },
     ],
   },

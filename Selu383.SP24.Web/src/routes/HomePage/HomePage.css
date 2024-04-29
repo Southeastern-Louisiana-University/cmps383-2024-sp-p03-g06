@@ -38,7 +38,6 @@
   color: #888;
 }
 
-
 .card {
   height: rem(440px);
   display: flex;
@@ -50,9 +49,7 @@
 }
 
 .title {
-  font-family:
-    Greycliff CF,
-    sans-serif;
+  font-family: Greycliff CF, sans-serif;
   font-weight: 900;
   color: var(--mantine-color-white);
   line-height: 1.2;
@@ -67,43 +64,39 @@
   text-transform: uppercase;
 }
 
-
-
-.rdp-day_selected{
+.rdp-day_selected {
   background-color: #61dafbaa;
   border-width: 1;
 }
 
-.css-1f8sh1y{
+.css-1f8sh1y {
   min-height: 470px;
 }
 
-.MuiButtonBase-root{
+.MuiButtonBase-root {
   position: static;
 }
 
-.carousel-image{
+.carousel-image {
   min-height: 460px;
 }
 
-
-.m-7485cace.mantine-Container-root{
-  
+.m-7485cace.mantine-Container-root {
   padding-top: 25%;
 }
 
-.hotel-listing.m-7485cace.mantine-Container-root{
-  
+.hotel-listing.m-7485cace.mantine-Container-root {
   padding-top: 5%;
 }
 
-div.listing-title{
+div.listing-title {
   padding-bottom: 5%;
 }
 
- .css-qp0k1k-MuiPaper-root-MuiAppBar-root{
+.css-qp0k1k-MuiPaper-root-MuiAppBar-root {
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -118,12 +111,16 @@ div.listing-title{
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  
+
   background-color: blueviolet;
   color: rgba(0, 0, 0, 0.87);
-} 
+}
 
 a {
   color: #646cffaa;
 }
 
+.bigger-button {
+  padding: 12px 24px;
+  font-size: 16px;
+}
